@@ -1,0 +1,8 @@
+942726ba2c3bce91baf87b727dd5c68d *DESCRIPTION
+5d1dfc268bf55975dc7e3ffdc9f32a8d *NAMESPACE
+789c3a3a763caafea0885483bc5c8616 *R/findBetaqq.r
+b08f8cc124dca4a49cb2d8cef1eadbf7 *R/findbeta.r
+07e307c406dc36634c1f945eec7c6827 *R/findbetamupsi.r
+6a376f029d25ef67afb427b47d3c801c *man/findbeta.Rd
+843b1d533f5ce8df48dd0bfae1270e6e *man/findbetamupsi.Rd
+3c645e5f1d9459b050a51f58a9744a09 *man/findbetaqq.Rd

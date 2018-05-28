@@ -1,0 +1,6 @@
+exportPattern("^[[:alpha:]]+")
+
+importFrom("graphics", "plot")
+importFrom("stats", "density", "optim", "qbeta", "qgamma", "rbeta",
+             "rgamma", "runif")
+importFrom("rootSolve", "multiroot")
