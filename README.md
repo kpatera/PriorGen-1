@@ -23,3 +23,4 @@ PriorGen — Generates Prior Distributions for Proportions
 * Plot all the above samples function
     + Generic and applicable to all functions above.
     
+@KP
