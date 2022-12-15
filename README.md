@@ -1,5 +1,5 @@
-# PriorGen - Ver 1.0
-PriorGen — Generates Prior Distributions for Proportions  
+# PriorGen - Ver 2.0 beta
+ PriorGen — Generates Prior Distributions for Proportions  
 ## Summary of candidate functions
 * Updated basic findbeta (original function with percentiles)
     + Mean, Median, Mode
