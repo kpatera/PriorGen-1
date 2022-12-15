@@ -1,3 +1,42 @@
+#' The findbeta (raw) function
+#'
+#' A function to estimate the parameters alpha and beta of a Beta distribution based on the existing prior beliefs (data and/or expert opinion). Information is provided about the mean (or the median or the mode) and a corresponding scale metric, either the variance or the range of the parameter.
+#'
+#'
+#' @usage function(themean=NULL,themedian=NULL,themode=NULL, thevariance=NULL, therange=c(0,1), silent=TRUE, seed=280385, nsims=10000)
+#' 
+#' @param themean: specify your prior belief about the mean. It takes a value between 0 and 1. Not to be specified if a value has been given for the median or the mode.
+#' @param themedian: specify your prior belief about the median. It takes a value between 0 and 1. Not to be specified if a value has been given for the mean or the mode.
+#' @param themode: specify your prior belief about the mode. It takes a value between 0 and 1. Not to be specified if a value has been given for the mean or the median.
+#' @param thevariance: specify your prior belief about the variance. If the selected variance is larger than possible, the variance will be adjusted downwards to create comply with the range of a probability.
+#' @param therange: specify your prior belief about the range. It should be a two number vector that c(ul,ll), where ul>0, ll<1 and ul<ll. This scale metric applies for themode and themedian options.
+#' @param silent: If TRUE an extended output is printed. If FALSE and stored in an object the function runs silently.
+#' @param seed: A fixed seed for replication purposes.
+#' @param nsims: Number of simulations for the creation of various summary metrics of the elicited prior.
+#'
+#' @examples
+#' ##Example 1
+#' ##Based on the available literature the mean value for the sensitivity of a test
+#' ##is expected to be 0.90 and its variance equals to 0.1.
+#' 
+#' findbeta_raw(themean=0.90, thevariance=0.1)
+#' 
+#' ##Example 2
+#' ##Based on the available literature the median value for the specificity of a
+#' ##test is expected to be 0.99 and its range between 0.1 and 1.
+#' 
+#' findbeta(themedian=0.0.7, therange=c(0.1,1))
+#' 
+#' @export 
+#' @param parameters: The beta distribution parameters Beta(a,b)
+#' @param summary: A basic summary of the elicited prior
+#' @param input: The initial input value that produced the above prior.
+#' @import 
+#'
+#' @references
+#' Branscum, A. J., Gardner, I. A., & Johnson, W. O. (2005): Estimation of diagnostic test sensitivity and specificity through Bayesian modeling. Preventive veterinary medicine, \bold{68}, 145--163.
+
+
 findbeta_raw<-function(themean=NULL,themedian=NULL,themode=NULL,
                    thevariance=NULL, therange=c(0,1), silent=TRUE, seed=280385,
                    nsims=10000){

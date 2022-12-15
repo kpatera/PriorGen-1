@@ -1,15 +1,34 @@
 Package: PriorGen
-Type: Package
 Title: Generates Prior Distributions for Proportions
-Version: 1.1.2
-Depends: R (>= 2.14.0), rootSolve
-Author: Polychronis Kostoulas
+Version: 2.0
+Date: 2022-12-15
+Authors@R: 
+    c(
+    person(given = "Konstantinos",
+           family = "Pateras",
+           role = c("aut"),
+           email = "kostas.pateras@gmail.com"),
+    person(given = "Polychronis",
+           family = "Kostoulas",
+           role = c("aut"),
+           email = "pkost@uth.gr")
+    )
 Maintainer: Polychronis Kostoulas <pkost@vet.uth.gr>
-Description: Translates beliefs into prior information in the form of Beta and Gamma distributions. It can be mainly used for the generation of priors on the prevalence of disease and the sensitivity/specificity of diagnostic tests.
-License: GPL-3
+Description: 
+    Translates beliefs into prior information in the form of Beta and Gamma distributions. 
+	It can be mainly used for the generation of priors on the prevalence of disease and 
+	the sensitivity/specificity of diagnostic tests.
+License: GPL (>= 3)
 Encoding: UTF-8
-LazyData: true
-NeedsCompilation: no
-Packaged: 2018-05-25 08:07:16 UTC; user
-Repository: CRAN
-Date/Publication: 2018-05-28 12:01:29 UTC
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1
+Depends:
+    R (>= 3.5.0),
+	rootSolve
+Imports: 
+Suggests: 
+    spelling,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+Language: en-US

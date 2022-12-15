@@ -1,5 +1,35 @@
+#' The findbeta (panel) function
+#'
+#' A function to estimate the parameters alpha and beta of a Beta distribution based on the existing prior beliefs (data and/or expert opinion). Information is provided about the mean (or the median or the mode) and a corresponding scale metric, either the variance or the range of the parameter.
+#'
+#'
+#' @usage function(themean.vec=NULL, themedian.vec=NULL, themode.vec=NULL, silent=TRUE, seed=280385, nsims=10000)
+#' 
+#' @param themean.vec: specify your prior belief about the mean. It takes a vector of means, with values between 0 and 1. Not to be specified if a vector has been given for the median or the mode.
+#' @param themedian.vec: specify your prior belief about the median. It takes a vector of medians, with values between 0 and 1. Not to be specified if a vector has been given for the mean or the mode.
+#' @param themode.vec: specify your prior belief about the mode. It takes a vector of modes, with values between 0 and 1. Not to be specified if a vector has been given for the mean or the median.
+#' @param silent: If TRUE an extended output is printed. If FALSE and stored in an object the function runs silently.
+#' @param seed: A fixed seed for replication purposes.
+#' @param nsims: Number of simulations for the creation of various summary metrics of the elicited prior.
+#'
+#' @examples
+#' ##Example 1
+#' ##Based on the available literature the median value for the specificity of a
+#' ##test is expected to be equal to 0.1, 0.2, 0.4, 0.04, 0.01, 0.5 based on opinions of 6 experts.
+#' 
+#' findbeta_panel(themean.vec=c(0.1,0.2,0.4,0.04,0.01,0.5))
+#' 
+#' @export 
+#' @param parameters: The beta distribution parameters Beta(a,b)
+#' @param summary: A basic summary of the elicited prior
+#' @param input: The initial input value that produced the above prior.
+#' @import 
+#'
+#' @references
+#' Branscum, A. J., Gardner, I. A., & Johnson, W. O. (2005): Estimation of diagnostic test sensitivity and specificity through Bayesian modeling. Preventive veterinary medicine, \bold{68}, 145--163.
+
 findbeta_panel<-function(themean.vec=NULL,themedian.vec=NULL,themode.vec=NULL,
-                         silent=TRUE,seed=280385){
+                         silent=TRUE,seed=280385,nsims=10000){
   
   stopifnot ( (is.null(themean.vec) + is.null(themedian.vec) + is.null(themode.vec)) == 2)
   themedian<-themean<-themode<-NULL
@@ -70,7 +100,7 @@ findbeta_panel<-function(themean.vec=NULL,themedian.vec=NULL,themode.vec=NULL,
     finalshape2= (finalshape1 * (1 - themode)+2*themode-1)/themode}
 
   set.seed(seed)
-  sample_beta=rbeta(10000,finalshape1,finalshape2)
+  sample_beta=rbeta(nsims,finalshape1,finalshape2)
   param=c(a=finalshape1,b=finalshape2)
   input=c(tmetric=value,percentile=percentile,percentile.value=percentile.value)
   names(input)[1]<-name
