@@ -1,3 +1,36 @@
+#' The findbetamupsi (raw) function
+#'
+#' A function to estimate (a) the parameters of a Beta distribution for the expected mean of a proportion - usually the prevalence of disease/infection for the units in an area/region and (b) the parameters of a Gamma distribution expressing our prior beleif about the variability of the prevalence estimates across the units of the area/region under consideration.
+#'
+#'
+#' @usage findbetamupsi_raw(themean, thevariance,  psi.percentile=0.90, percentile.median, percentile95value)
+#' 
+#' @param themean: specify your prior belief about the mean. It takes a value between 0 and 1.
+#' @param thevariance: specify your prior belief about the variance. If the selected variance is larger than possible, the variance will be adjusted downwards to create comply with the range of a probability.
+#' @param psi.percentile: specify the level of confidence that a certain fraction of the units under study has a prevalence less than the percentile.median. It takes a value between 0 and 1 and the default is 0.90.
+#' @param percentile.median: specify the median value that corresponds to the defined psi.percentile. It takes a value between 0 and 1 and has to be higher than both themean and the percentile.
+#' @param percentile95value: specify the value that the percentile.median does not exceed with 95% confidence. It takes a value between 0 and 1 and has to be higher than the percentile.median.
+#'
+#' @examples
+#' ## Example
+#' ## The mean prevalence of a disease/infection for the units within an area/region
+#' ## is thought to be 0.20 with a variance equal to 0.03, 
+#' ## we are also confident that 90% of all units have a prevalence
+#' ## less or equal to 0.50 and we are 95% certain that it does not exceed 0.60
+#'
+#' findbetamupsi_raw(themean=0.20, thevariance = 0.03, psi.percentile=0.90, percentile.median=0.50, percentile95value=0.60)
+#' 
+#' @export 
+#' @param parameters: The beta distribution parameters Beta(a,b)
+#' @param bot_param: simulated mu and psi of Beta(mu psi,psi(1-mu))
+#' @param summary: A basic summary of the elicited prior
+#' @param input: The initial input value that produced the above prior.
+#' 
+#' @import 
+#'
+#' @references
+#' Branscum, A. J., Gardner, I. A., & Johnson, W. O. (2005): Estimation of diagnostic test sensitivity and specificity through Bayesian modeling. Preventive veterinary medicine, \bold{68}, 145--163.
+
 findbetamupsi_raw<-function(themean=0.2, thevariance=0.05, 
                             psi.percentile=0.90, percentile.median, percentile95value,
                             seed=280385,silent=TRUE){

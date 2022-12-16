@@ -14,7 +14,7 @@
 #' @param percentile95value: specify the value that the percentile.median does not exceed with 95% confidence. It takes a value between 0 and 1 and has to be higher than the percentile.median.
 #'
 #' @examples
-#' ## Example 1
+#' ## Example
 #' ## The mean prevalence of a disease/infection for the units within an area/region
 #' ## is thought to be 0.20 and we are 99% confident that it is not more than 0.40.
 #' ## Within this area, we are also confident that 90% of all units have a prevalence
