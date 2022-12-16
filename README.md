@@ -44,7 +44,7 @@ In case an error during download occur try the following
 
 
 
-# Updates from Version 1 -> Version 2
+# Updates from Version 1 -> Version 2.0 Beta
 
 
 ## Summary of updated and candidated functions
