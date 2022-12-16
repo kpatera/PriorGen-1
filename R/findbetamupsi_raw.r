@@ -10,7 +10,11 @@
 #' @param psi.percentile: specify the level of confidence that a certain fraction of the units under study has a prevalence less than the percentile.median. It takes a value between 0 and 1 and the default is 0.90.
 #' @param percentile.median: specify the median value that corresponds to the defined psi.percentile. It takes a value between 0 and 1 and has to be higher than both themean and the percentile.
 #' @param percentile95value: specify the value that the percentile.median does not exceed with 95% confidence. It takes a value between 0 and 1 and has to be higher than the percentile.median.
-#'
+#' @param silent: If TRUE an extended output is printed. If FALSE and stored in an object the function runs silently.
+#' @param seed: A fixed seed for replication purposes.
+#' @param nsims: Number of simulations for the creation of various summary metrics of the elicited prior.
+#' @param root.method: Choose between two alternatives to solve the two non-linear equations to identify the hyperparameters of psi. root.method="multiroot" involves the basic function of the rootSolve package, root.method="nleqslv" involves the base functions of the nleqslv package.
+#' 
 #' @examples
 #' ## Example
 #' ## The mean prevalence of a disease/infection for the units within an area/region
@@ -33,7 +37,7 @@
 
 findbetamupsi_raw<-function(themean=0.2, thevariance=0.05, 
                             psi.percentile=0.90, percentile.median, percentile95value,
-                            seed=280385,silent=TRUE){
+                            seed=280385,silent=TRUE,nsims=10000,root.method="multiroot"){
   # themean=0.2
   # thevariance = 0.05
   # psi.percentile=0.90
@@ -70,15 +74,18 @@ findbetamupsi_raw<-function(themean=0.2, thevariance=0.05,
   model <- function(x) c(F1 = qgamma(0.5, shape = x[1], scale = 1/x[2]) - 
                            alpha_t, F2 = qgamma(0.05, shape = x[1], scale = 1/x[2]) - 
                            beta_t)
-  ss2 <- multiroot(f = model, start = c(5, 2), positive = T)
-  qgamma(0.5, ss2$root[1], ss2$root[2])
-  qgamma(0.95, ss2$root[1], ss2$root[2])
   
+  if(root.method=="multiroot"){
+    ss2 <- multiroot(f = model, start = c(5, 2), positive = T)
+    a=rgamma(nsims,ss2$root[1],ss2$root[2])
+  }else if(root.method=="nleqslv"){
+    ss2<-nleqslv(c(5,2), model, control=list(btol=.01))
+    a=rgamma(nsims,ss2$x[1],ss2$x[2])    
+  }
   
-  a=rgamma(10000,ss2$root[1],ss2$root[2])
-  b=rbeta(10000,alpha_mu,beta_mu)
+  b=rbeta(nsims,alpha_mu,beta_mu)
   param=c(a=alpha_mu,b=beta_mu)
-  sample_beta=rbeta(10000,a*b,a*(1-b))
+  sample_beta=rbeta(nsims,a*b,a*(1-b))
   
   input=c(themean=themean, thevariances=thevariance,percentile=pr_n,
           percentile.value=percentile.value, psi.percentile=psi.percentile, 
@@ -88,7 +95,7 @@ findbetamupsi_raw<-function(themean=0.2, thevariance=0.05,
     print (paste("The desired Beta distribution that satisfies the specified conditions about the mean of the prevalence 'mu' is: Beta(", round(finalshape1,2), round(finalshape2,2),")"))
     print (paste("The desired Gamma distribution that satisfies the specified conditions about the variability 'psi' of the prevalence is: Gamma(", round(ss2$root[1],2), round(ss2$root[2],2),")"))
     #print ("The plot gives the specified prior beleif on the prevalence distribution.")
-    #plot(density(rbeta(10000,a*b,a*(1-b))))
+    #plot(density(rbeta(nsims,a*b,a*(1-b))))
     print("Descriptive statistics for this distrubiton are:")
     return(list(parameters=param,bot_param=list(at=a*b,bt=a*(1-b)),summary=summary(sample_beta),input=input))
   }

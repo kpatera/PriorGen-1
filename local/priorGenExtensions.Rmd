@@ -96,16 +96,25 @@ fb_qq$summary
 fb_qq$input
 ```
 \newpage
-## Basic findbetamupsi updated (Hierarchical input)
+## Basic findbetamupsi updated (Hierarchical input  + choice of root function)
 ```{r  include=TRUE}
 source("~/GitHub/PriorGen-1/R/findbetamupsi.r")
 require(rootSolve)
-fb_mupsi=findbetamupsi(themean=0.20, percentile=0.99, lower.v=TRUE,
+require(nleqslv)
+fb_mupsi_RS=findbetamupsi(themean=0.20, percentile=0.99, lower.v=TRUE,
               percentile.value=0.30, psi.percentile=0.90,
-              percentile.median=0.50, percentile95value=0.60)
-fb_mupsi$parameters
-fb_mupsi$summary
-fb_mupsi$input
+              percentile.median=0.60, percentile95value=0.80,root.method="multiroot")
+fb_mupsi_RS$parameters
+fb_mupsi_RS$summary
+fb_mupsi_RS$input
+
+fb_mupsi_NL=findbetamupsi(themean=0.20, percentile=0.99, lower.v=TRUE,
+              percentile.value=0.30, psi.percentile=0.90,
+              percentile.median=0.60, percentile95value=0.80,root.method="nleqslv")
+fb_mupsi_RS$parameters
+fb_mupsi_NL$parameters
+# Results are similar
+
 ```
 \newpage
 ## Raw findbetamupsi updated (Hierarchical input)
@@ -141,6 +150,7 @@ fb_mupsi_panel=findbetamupsi_panel(themean=c(0.1,0.5,0.6,0.3,0.05,0.01,0.3),
 fb_mupsi_panel$parameters
 fb_mupsi_panel$summary
 fb_mupsi_panel$input
+
 ```
 \newpage 
 # Plot for findbeta
