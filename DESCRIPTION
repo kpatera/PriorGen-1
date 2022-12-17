@@ -13,7 +13,8 @@ Authors@R:
            role = c("aut"),
            email = "pkost@uth.gr")
     )
-Maintainer: Polychronis Kostoulas <pkost@vet.uth.gr>
+Author: Polychronis Kostoulas <pkost@uth.gr>
+Maintainer: Polychronis Kostoulas <pkost@uth.gr>
 Description: 
     Translates beliefs into prior information in the form of Beta and Gamma distributions. 
 	It can be mainly used for the generation of priors on the prevalence of disease and 
