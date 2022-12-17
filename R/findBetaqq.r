@@ -21,7 +21,6 @@
 #' @param parameters: The beta distribution parameters Beta(a,b)
 #' @param summary: A basic summary of the elicited prior
 #' @param input: The initial input value that produced the above prior.
-#' @import 
 #'
 #' @references
 #' Kostoulas, P., Nielsen, S. S., Branscum, A. J., Johnson, W. O., Dendukuri, N., Dhand, N. K., Toft, N., Gardner, I. A. (2017): Reporting guidelines for diagnostic accuracy studies that use Bayesian latent class models (STARD–BLCM). Statistics in medicine, 23, 3603–3604.

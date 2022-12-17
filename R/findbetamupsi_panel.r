@@ -29,8 +29,6 @@
 #' @param summary: A basic summary of the elicited prior
 #' @param input: The initial input value that produced the above prior.
 #' 
-#' @import 
-#'
 #' @references
 #' Branscum, A. J., Gardner, I. A., & Johnson, W. O. (2005): Estimation of diagnostic test sensitivity and specificity through Bayesian modeling. Preventive veterinary medicine, \bold{68}, 145--163.
 

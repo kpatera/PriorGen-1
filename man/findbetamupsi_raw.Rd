@@ -17,6 +17,14 @@ findbetamupsi_raw(themean, thevariance,  psi.percentile=0.90, percentile.median,
 
 \item{percentile95value:}{specify the value that the percentile.median does not exceed with 95\% confidence. It takes a value between 0 and 1 and has to be higher than the percentile.median.}
 
+\item{silent:}{If TRUE an extended output is printed. If FALSE and stored in an object the function runs silently.}
+
+\item{seed:}{A fixed seed for replication purposes.}
+
+\item{nsims:}{Number of simulations for the creation of various summary metrics of the elicited prior.}
+
+\item{root.method:}{Choose between two alternatives to solve the two non-linear equations to identify the hyperparameters of psi. root.method="multiroot" involves the basic function of the rootSolve package, root.method="nleqslv" involves the base functions of the nleqslv package.}
+
 \item{parameters:}{The beta distribution parameters Beta(a,b)}
 
 \item{bot_param:}{simulated mu and psi of Beta(mu psi,psi(1-mu))}

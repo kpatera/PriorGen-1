@@ -10,7 +10,7 @@
 #' @param psi.percentile: specify the level of confidence that a certain fraction of the units under study has a prevalence less than the percentile.median. It takes a value between 0 and 1 and the default is 0.90.
 #' @param percentile.median: specify the median value that corresponds to the defined psi.percentile. It takes a value between 0 and 1 and has to be higher than both themean and the percentile.
 #' @param percentile95value: specify the value that the percentile.median does not exceed with 95% confidence. It takes a value between 0 and 1 and has to be higher than the percentile.median.
-#' @silent: If TRUE an extended output is printed. If FALSE and stored in an object the function runs silently.
+#' @param silent: If TRUE an extended output is printed. If FALSE and stored in an object the function runs silently.
 #' @param seed: A fixed seed for replication purposes.
 #' @param nsims: Number of simulations for the creation of various summary metrics of the elicited prior.
 #' @param root.method: Choose between two alternatives to solve the two non-linear equations to identify the hyperparameters of psi. root.method="multiroot" involves the basic function of the rootSolve package, root.method="nleqslv" involves the base functions of the nleqslv package.
@@ -29,8 +29,6 @@
 #' @param bot_param: simulated mu and psi of Beta(mu psi,psi(1-mu))
 #' @param summary: A basic summary of the elicited prior
 #' @param input: The initial input value that produced the above prior.
-#' 
-#' @import 
 #'
 #' @references
 #' Branscum, A. J., Gardner, I. A., & Johnson, W. O. (2005): Estimation of diagnostic test sensitivity and specificity through Bayesian modeling. Preventive veterinary medicine, \bold{68}, 145--163.
