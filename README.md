@@ -23,7 +23,7 @@ To install a stable version from the drat repository use:
 
 To run elicitation analysis on an example dataset:
 
-    out<-findbeta(themode=0.15, percentile=0.90,lower.v=TRUE, percentile.value=0.40)
+    out<-findbeta(themode=0.15, percentile=0.90,lower.v=TRUE, percentile.value=0.40, silent=TRUE)
     out
     
 To create a plot of the analysed data: 
@@ -58,7 +58,7 @@ In case an error during download occur try the following
     + Mean, Median, Mode
 * Updated basic findbetaqq (original functions with 2 percentiles)
     + Percentiles
-* Updated basic findbetamupsi (original function with percentiles)
+* Updated basic findbetamupsi (original function with percentiles - two non-linear root functions)
     + Mean
 * Raw findbetamupsi (standard location and scale measures (mean, variance))
     + Mean
@@ -69,5 +69,8 @@ In case an error during download occur try the following
     
 * Plot all the above samples function
     + Generic and applicable to all functions above.
-    
+
+* New root and optim functions 
+    + RootSolve alterantive
+    + Optim alternative
 @KP
