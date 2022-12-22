@@ -1,9 +1,6 @@
 # PriorGen - Ver 2.0 beta
  PriorGen — Generates Prior Distributions for Proportions  
-
-# EVI
-EVI: the Epidemic Volatility Index as an early-warning tool for epidemic waves
-
+ 
 ## Installation
 
 To install the current source from GitHub use:
@@ -17,7 +14,7 @@ To install a stable version from the drat repository use:
 
     ## Will be added once a stable version is available
 
-## Basic functions of EVI package
+## Basic functions of PriorGen package
 
     require(PriorGen)
 
@@ -30,7 +27,7 @@ To create a plot of the analysed data:
 
     findbeta_plot(out)
     
-The basic two functions of the EVI analysis are findbeta() and findbetamupsi(). For help on these functions type:  
+The basic two functions of PriorGen are findbeta() and findbetamupsi(). For help on these functions type:  
     
     ?findbeta
     ?findbetamupsi
