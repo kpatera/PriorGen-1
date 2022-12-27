@@ -121,8 +121,7 @@ fb_mupsi_NL$parameters
 ```{r  include=TRUE}
 source("~/GitHub/PriorGen-1/R/findbetamupsi_raw.r")
 require(rootSolve)
-fb_mupsi_raw=findbetamupsi_raw(themean=0.20,thevariance = 0.05, psi.percentile=0.90,
-              percentile.median=0.50, percentile95value=0.60,silent = TRUE)
+fb_mupsi_raw=findbetamupsi_raw(themean=0.20,thevariance = 0.05, thepsi=0.15,silent = TRUE)
 fb_mupsi_raw$parameters
 fb_mupsi_raw$summary
 fb_mupsi_raw$input
@@ -223,8 +222,7 @@ legend("topright",c("Basic","Basic1"),col=c("black","gray"),lty=1:2,lwd=3)
 source("~/GitHub/PriorGen-1/R/findbetamupsi_raw.r")
 source("~/GitHub/PriorGen-1/R/findbeta_plot.r")
 require(rootSolve)
-fb_mupsi_raw=findbetamupsi_raw(themean=0.20, thevariance = 0.1, psi.percentile=0.90,
-                               percentile.median=0.50, percentile95value=0.60,silent = TRUE)
+fb_mupsi_raw=findbetamupsi_raw(themean=0.20, thevariance = 0.1, thepsi=0.15,silent = TRUE)
 par(mfrow=c(1,3))
 plot(density(fb_mupsi_abstract$bot_param$at),lwd=3,main="Density plot for samples of a=mu*psi") # 
 plot(density(fb_mupsi_abstract$bot_param$at),lwd=3,main="Density plot for samples of b=mu*(1-psi)") # 
@@ -232,8 +230,7 @@ fb_mupsi_abstract$parameters[1]=mean(fb_mupsi_abstract$bot_param$at)
 fb_mupsi_abstract$parameters[2]=mean(fb_mupsi_abstract$bot_param$bt)
 findbeta_plot(fb_mupsi_raw,main="Elicited beta prior (Hierarchical prior top level)",
               ylab = "Density",lwd=3,type="l")
-fb_mupsi_raw1=findbetamupsi_raw(themean=0.30, thevariance = 0.15, psi.percentile=0.90,
-              percentile.median=0.95, percentile95value=0.99,silent = TRUE)
+fb_mupsi_raw1=findbetamupsi_raw(themean=0.30, thevariance = 0.15, thepsi=0.15,silent = TRUE)
 findbeta_plot(fb_mupsi_raw1,main="Elicited beta prior (Hierarchical prior top level)",
               ylab = "Density",lwd=3,type="l",lines = T,lty=2,col="gray")
 legend("topright",c("Raw","Raw1"),col=c("black","gray"),lty=1:2,lwd=3)
