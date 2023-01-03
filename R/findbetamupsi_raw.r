@@ -22,8 +22,9 @@
 #' findbetamupsi_raw(themean=0.20, thevariance = 0.03, thepsi=0.15)
 #' 
 #' @export 
-#' @param parameters: The beta distribution parameters Beta(a,b)
-#' @param bot_param: simulated mu and psi of Beta(mu psi,psi(1-mu))
+#' @param param_beta: The beta distribution parameters Beta(a,b)
+#' @param param_gamma: The gamma distribution parameters gamma(a,b)
+#' @param param_upper: simulated mu and psi of Beta(mu psi,psi(1-mu))
 #' @param summary: A basic summary of the elicited prior
 #' @param input: The initial input value that produced the above prior.
 #' 
@@ -81,16 +82,9 @@ findbetamupsi_raw<-function(themean=0.2, thevariance=0.05,thepsi=0.5,
   input=c(themean=themean, thevariances=thevariance,percentile=pr_n,
           percentile.value=percentile.value, thepsi=thepsi)
   
-  if(silent==FALSE){
-    print (paste("The desired Beta distribution that satisfies the specified conditions about the mean of the prevalence 'mu' is: Beta(", round(finalshape1,2), round(finalshape2,2),")"))
-    print (paste("The desired Gamma distribution that satisfies the specified conditions about the variability 'psi' of the prevalence is: Gamma(", round(ss2$root[1],2), round(ss2$root[2],2),")"))
-    #print ("The plot gives the specified prior beleif on the prevalence distribution.")
-    #plot(density(rbeta(nsims,a*b,a*(1-b))))
-    print("Descriptive statistics for this distrubiton are:")
-    return(list(parameters=param,bot_param=list(at=a*b,bt=a*(1-b)),summary=summary(sample_beta),input=input))
-  }
-  invisible(return(list(parameters=param,bot_param=list(at=a*b,bt=a*(1-b)),summary=summary(sample_beta),input=input)))
-  
+  out<-list(param_beta=param,param_gamma=ss2,param_upper=list(at=a*b,bt=a*(1-b)),summary=summary(sample_beta),input=input)
+  class(out)<-"PriorGen2"
+  invisible(return(out))
 }
 
 

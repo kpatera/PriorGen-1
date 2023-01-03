@@ -10,7 +10,6 @@
 #' 
 #' @param themean.cat: specify your prior belief about the mean. It takes a value among c("Very low","Low","Average","High","Very high").
 #' @param thevariance.cat: specify your prior belief about the variance. It takes a value among c("Very low","Low","Average","High","Very high").
-#' @param silent: If TRUE an extended output is printed. If FALSE and stored in an object the function runs silently.
 #' @param seed: A fixed seed for replication purposes.
 #' @param nsims: Number of simulations for the creation of various summary metrics of the elicited prior.
 #'
@@ -32,7 +31,7 @@
 
 findbeta_abstract<-function(themean.cat=c("Very low","Low","Average","High","Very high"),
                        thevariance.cat=c("Very low","Low","Average","High","Very high"),
-                       silent=TRUE, seed=280385,nsims=10000){
+                       seed=280385,nsims=10000){
   levels=c("Very low","Low","Average","High","Very high")
   themean=seq(0.1,0.9,length.out=5)[which(levels==themean.cat)]
   alpha=0.99995
@@ -65,12 +64,7 @@ findbeta_abstract<-function(themean.cat=c("Very low","Low","Average","High","Ver
   input=c(tmetric=value,scalemetric=scalevalue,percentile.value=pr_n); names(input)[1]<-name
   names(input)[1]<-name
   
-  if(silent==FALSE){
-    cat(paste("The desired Beta distribution that satisfies the specified conditions is: Beta(", round(finalshape1,2), round(finalshape2,2),") \n",
-              "Verification: The percentile value",round(qbeta(pr_n, finalshape1, finalshape2),2), "corresponds to the",pr_n,"th percentile \n"))
-    cat(paste("Descriptive statistics for this distribution can be found below (or in the defined object):\n"))
-    return(list(parameters=param,summary=summary(sample_beta),input=input))
-  }
-  invisible(return(list(parameters=param,summary=summary(sample_beta),input=input)))
-  
+  out<-list(parameters=param,summary=summary(sample_beta),input=input)
+  class(out)<-"PriorGen"
+  invisible(return(out))
 }

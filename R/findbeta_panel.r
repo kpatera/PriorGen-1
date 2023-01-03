@@ -8,7 +8,6 @@
 #' @param themean.vec: specify your prior belief about the mean. It takes a vector of means, with values between 0 and 1. Not to be specified if a vector has been given for the median or the mode.
 #' @param themedian.vec: specify your prior belief about the median. It takes a vector of medians, with values between 0 and 1. Not to be specified if a vector has been given for the mean or the mode.
 #' @param themode.vec: specify your prior belief about the mode. It takes a vector of modes, with values between 0 and 1. Not to be specified if a vector has been given for the mean or the median.
-#' @param silent: If TRUE an extended output is printed. If FALSE and stored in an object the function runs silently.
 #' @param seed: A fixed seed for replication purposes.
 #' @param nsims: Number of simulations for the creation of various summary metrics of the elicited prior.
 #'
@@ -28,7 +27,7 @@
 #' Branscum, A. J., Gardner, I. A., & Johnson, W. O. (2005): Estimation of diagnostic test sensitivity and specificity through Bayesian modeling. Preventive veterinary medicine, \bold{68}, 145--163.
 
 findbeta_panel<-function(themean.vec=NULL,themedian.vec=NULL,themode.vec=NULL,
-                         silent=TRUE,seed=280385,nsims=10000){
+                         seed=280385,nsims=10000){
   
   stopifnot ( (is.null(themean.vec) + is.null(themedian.vec) + is.null(themode.vec)) == 2)
   themedian<-themean<-themode<-NULL
@@ -103,13 +102,8 @@ findbeta_panel<-function(themean.vec=NULL,themedian.vec=NULL,themode.vec=NULL,
   param=c(a=finalshape1,b=finalshape2)
   input=c(tmetric=value,percentile=percentile,percentile.value=percentile.value)
   names(input)[1]<-name
-  if(silent==FALSE){
-    cat(paste("The desired Beta distribution that satisfies the specified conditions is: Beta(", round(finalshape1,2), round(finalshape2,2),") \n",
-              "Verification: The percentile value",round(qbeta(pr_n, finalshape1, finalshape2),2), "corresponds to the",pr_n,"th percentile \n"))
-    cat(paste("Descriptive statistics for this distribution can be found below:\n"))
-    return(list(parameters=param,summary=summary(sample_beta),input=input)
-    )  
-  }
-  invisible(return(list(parameters=param,summary=summary(sample_beta),input=input)))
   
+  out<-list(parameters=param,summary=summary(sample_beta),input=input)
+  class(out)<-"PriorGen"
+  invisible(return(out))
 }

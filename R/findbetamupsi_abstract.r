@@ -10,7 +10,6 @@
 #' @param psi.percentile: specify the level of confidence that a certain fraction of the units under study has a prevalence less than the percentile.median. It takes a value between 0 and 1 and the default is 0.90.
 #' @param percentile.median: specify the median value that corresponds to the defined psi.percentile. It takes a value between 0 and 1 and has to be higher than both themean and the percentile.
 #' @param percentile95value: specify the value that the percentile.median does not exceed with 95% confidence. It takes a value between 0 and 1 and has to be higher than the percentile.median.
-#' @param silent: If TRUE an extended output is printed. If FALSE and stored in an object the function runs silently.
 #' @param seed: A fixed seed for replication purposes.
 #' @param nsims: Number of simulations for the creation of various summary metrics of the elicited prior.
 #' @param root.method: Choose between two alternatives to solve the two non-linear equations to identify the hyperparameters of psi. root.method="multiroot" involves the basic function of the rootSolve package, root.method="nleqslv" involves the base functions of the nleqslv package.
@@ -25,8 +24,9 @@
 #' findbetamupsi_abstract(themean.cat="Low", thevariance.cat="Average", psi.percentile=0.90, percentile.median=0.60, percentile95value=0.70)
 #' 
 #' @export 
-#' @param parameters: The beta distribution parameters Beta(a,b)
-#' @param bot_param: simulated mu and psi of Beta(mu psi,psi(1-mu))
+#' @param param_beta: The beta distribution parameters Beta(a,b)
+#' @param param_gamma: The gamma distribution parameters gamma(a,b)
+#' @param param_upper: simulated mu and psi of Beta(mu psi,psi(1-mu))
 #' @param summary: A basic summary of the elicited prior
 #' @param input: The initial input value that produced the above prior.
 #'
@@ -36,7 +36,7 @@
 findbetamupsi_abstract<-function(themean.cat=c("Very low","Low","Average","High","Very high"), 
                                  thevariance.cat=c("Very low","Low","Average","High","Very high"), 
                                  psi.percentile=0.90, percentile.median=0.8, percentile95value=0.9,
-                                 seed=280385,silent=TRUE, nsims=10000, root.method="multiroot"){
+                                 seed=280385, nsims=10000, root.method="multiroot"){
   alpha=0.99995
   pr_n=0.9999
   levels=c("Very low","Low","Average","High","Very high")
@@ -94,14 +94,7 @@ findbetamupsi_abstract<-function(themean.cat=c("Very low","Low","Average","High"
           percentile.value=percentile.value, psi.percentile=psi.percentile, 
           percentile.median=percentile.median, percentile95value=percentile95value)
   
-  if(silent==FALSE){
-    print (paste("The desired Beta distribution that satisfies the specified conditions about the mean of the prevalence 'mu' is: Beta(", round(alpha_mu,2), round(beta_mu,2),")"))
-    print (paste("The desired Gamma distribution that satisfies the specified conditions about the variability 'psi' of the prevalence is: Gamma(", round(ss2$root[1],2), round(ss2$root[2],2),")"))
-    #print ("The plot gives the specified prior beleif on the prevalence distribution.")
-    #plot(density(rbeta(nsims,a*b,a*(1-b))))
-    print("Descriptive statistics for this distrubiton are:")
-    return(list(parameters=param,bot_param=list(at=a*b,bt=a*(1-b)),summary=summary(sample_beta),input=input))
-  }
-  invisible(return(list(parameters=param,bot_param=list(at=a*b,bt=a*(1-b)),summary=summary(sample_beta),input=input)))
-  
+  out<-list(param_beta=param,param_gamma=ss2,param_upper=list(at=a*b,bt=a*(1-b)),summary=summary(sample_beta),input=input)
+  class(out)<-"PriorGen2"
+  invisible(return(out))
 }

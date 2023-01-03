@@ -26,8 +26,7 @@
 #' Kostoulas, P., Nielsen, S. S., Branscum, A. J., Johnson, W. O., Dendukuri, N., Dhand, N. K., Toft, N., Gardner, I. A. (2017): Reporting guidelines for diagnostic accuracy studies that use Bayesian latent class models (STARD–BLCM). Statistics in medicine, 23, 3603–3604.
 
 
-findbetaqq<-function(percentile.value1,percentile1,percentile.value2,percentile2,
-                     seed=280385, silent=TRUE){
+findbetaqq<-function(percentile.value1,percentile1,percentile.value2,percentile2, seed=280385){
   time=proc.time()
   
   findcentiles<-function(x)
@@ -63,14 +62,7 @@ findbetaqq<-function(percentile.value1,percentile1,percentile.value2,percentile2
   input=c(percentile.value1=percentile.value1,percentile1=percentile1,
           percentile.value2=percentile.value2,percentile2=percentile2)
   
-  if(silent==FALSE){
-    print (paste("The desired Beta distribution that satisfies the specified conditions is: Beta(", round(finalshape1,2),",", round(finalshape2,2),")"))
-    print ("Descriptive statistics for this distribution are:")
-    #print(summary(sample_beta))
-    (paste("Verification: The first percentile value",round(qbeta(percentile1, finalshape1, finalshape2),2), "corresponds to the",percentile1,"th percentile"))
-    (paste("Verification: The second percentile value",round(qbeta(percentile2, finalshape1, finalshape2),2), "corresponds to the",percentile2,"th percentile"))
-    # print(paste("The procedure took",round((proc.time()-time)[3],3),"minutes and ",k ,"loops"))
-    return(list(parameters=param,summary=summary(sample_beta),input=input))
-  }
-  invisible(return(list(parameters=param,summary=summary(sample_beta),input=input)))
+  out<-list(parameters=param,summary=summary(sample_beta),input=input)
+  class(out)<-"PriorGen"
+  invisible(return(out))
 }

@@ -17,8 +17,6 @@ function(themean=NULL,themedian=NULL,themode=NULL, thevariance=NULL, therange=c(
 
 \item{therange:}{specify your prior belief about the range. It should be a two number vector that c(ul,ll), where ul>0, ll<1 and ul<ll. This scale metric applies for themode and themedian options.}
 
-\item{silent:}{If TRUE an extended output is printed. If FALSE and stored in an object the function runs silently.}
-
 \item{seed:}{A fixed seed for replication purposes.}
 
 \item{nsims:}{Number of simulations for the creation of various summary metrics of the elicited prior.}

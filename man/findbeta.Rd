@@ -19,8 +19,6 @@ findbeta(themean=NULL, themedian=NULL, themode=NULL, percentile=0.95,lower.v=F, 
 
 \item{percentile.value:}{specify the upper or lower limit for the mean (or the median or the mode) at the specified level of confidence (percentile). It takes a value between 0 and 1.}
 
-\item{silent:}{If TRUE an extended output is printed. If FALSE and stored in an object the function runs silently.}
-
 \item{seed:}{A fixed seed for replication purposes.}
 
 \item{nsims:}{Number of simulations for the creation of various summary metrics of the elicited prior.}
@@ -39,7 +37,7 @@ A function to estimate the parameters alpha and beta of a Beta distribution base
 ##Based on the available literature the mean value for the sensitivity of a test
 ##is expected to be 0.90 and we can be 95\\% sure that it is higher than 0.80.
 
-findbeta(themean=0.90, percentile=0.95,lower.v=FALSE, percentile.value=0.80)
+findbeta(themean=0.90, percentile=0.95,lower.v=FALSE, percentile.value=0.80, silent=TRUE, seed=280385, nsims=10000)
 
 ##Example 2
 ##Based on the available literature the median value for the specificity of a

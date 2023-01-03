@@ -11,11 +11,7 @@ findbetamupsi_raw(themean, thevariance,  psi.percentile=0.90, percentile.median,
 
 \item{thevariance:}{specify your prior belief about the variance. If the selected variance is larger than possible, the variance will be adjusted downwards to create comply with the range of a probability.}
 
-\item{psi.percentile:}{specify the level of confidence that a certain fraction of the units under study has a prevalence less than the percentile.median. It takes a value between 0 and 1 and the default is 0.90.}
-
-\item{percentile.median:}{specify the median value that corresponds to the defined psi.percentile. It takes a value between 0 and 1 and has to be higher than both themean and the percentile.}
-
-\item{percentile95value:}{specify the value that the percentile.median does not exceed with 95\% confidence. It takes a value between 0 and 1 and has to be higher than the percentile.median.}
+\item{thepsi:}{specify your prior belief about the between-study variance. Large values of psi correspond to low heterogeneity, low values of psi correspond to large heterogeneity.}
 
 \item{silent:}{If TRUE an extended output is printed. If FALSE and stored in an object the function runs silently.}
 
@@ -25,9 +21,11 @@ findbetamupsi_raw(themean, thevariance,  psi.percentile=0.90, percentile.median,
 
 \item{root.method:}{Choose between two alternatives to solve the two non-linear equations to identify the hyperparameters of psi. root.method="multiroot" involves the basic function of the rootSolve package, root.method="nleqslv" involves the base functions of the nleqslv package.}
 
-\item{parameters:}{The beta distribution parameters Beta(a,b)}
+\item{param_beta:}{The beta distribution parameters Beta(a,b)}
 
-\item{bot_param:}{simulated mu and psi of Beta(mu psi,psi(1-mu))}
+\item{param_gamma:}{The gamma distribution parameters gamma(a,b)}
+
+\item{param_upper:}{simulated mu and psi of Beta(mu psi,psi(1-mu))}
 
 \item{summary:}{A basic summary of the elicited prior}
 
@@ -39,11 +37,10 @@ A function to estimate (a) the parameters of a Beta distribution for the expecte
 \examples{
 ## Example
 ## The mean prevalence of a disease/infection for the units within an area/region
-## is thought to be 0.20 with a variance equal to 0.03, 
-## we are also confident that 90\% of all units have a prevalence
-## less or equal to 0.50 and we are 95\% certain that it does not exceed 0.60
+## is thought to be 0.20 with a variance equal to 0.03, with large heterogeneity 
+i.e. psi equals to 0.15.
 
-findbetamupsi_raw(themean=0.20, thevariance = 0.03, psi.percentile=0.90, percentile.median=0.50, percentile95value=0.60)
+findbetamupsi_raw(themean=0.20, thevariance = 0.03, thepsi=0.15)
 
 }
 \references{

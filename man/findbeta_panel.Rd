@@ -13,8 +13,6 @@ function(themean.vec=NULL, themedian.vec=NULL, themode.vec=NULL, silent=TRUE, se
 
 \item{themode.vec:}{specify your prior belief about the mode. It takes a vector of modes, with values between 0 and 1. Not to be specified if a vector has been given for the mean or the median.}
 
-\item{silent:}{If TRUE an extended output is printed. If FALSE and stored in an object the function runs silently.}
-
 \item{seed:}{A fixed seed for replication purposes.}
 
 \item{nsims:}{Number of simulations for the creation of various summary metrics of the elicited prior.}

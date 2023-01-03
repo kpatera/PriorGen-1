@@ -3,7 +3,6 @@
 export(findbeta)
 export(findbeta_abstract)
 export(findbeta_panel)
-export(findbeta_plot)
 export(findbeta_raw)
 export(findbetamupsi)
 export(findbetamupsi_abstract)

@@ -11,7 +11,6 @@
 #' @param percentile: specify the level of confidence that the true value of the mean (or the median or the mode) is greater or lower than the percentile.value. It takes a value between 0 and 1 and the default =0.95.
 #' @param lower.v: logical, if TRUE the specified percentile.value is the upper limit for the mean (or the median or the mode) at the specified confidence level (percentile). If {FALSE} the specified percentile.value is the lower limit for the mean (or the median or the mode) at the specified confidence level (percentile). The default is FALSE.
 #' @param percentile.value: specify the upper or lower limit for the mean (or the median or the mode) at the specified level of confidence (percentile). It takes a value between 0 and 1.
-#' @param silent: If TRUE an extended output is printed. If FALSE and stored in an object the function runs silently.
 #' @param seed: A fixed seed for replication purposes.
 #' @param nsims: Number of simulations for the creation of various summary metrics of the elicited prior.
 #' 
@@ -45,7 +44,7 @@
 
 findbeta<-function(themean=NULL,themedian=NULL,themode=NULL,
                    percentile=0.95, lower.v=F, percentile.value, 
-                   silent=TRUE, seed=280385, nsims=10000){
+                   seed=280385, nsims=10000){
   stopifnot ( (is.null(themean) + is.null(themedian) + is.null(themode)) == 2)
   out1=NULL
   if(!is.null(themean)) {name<-"themean";value=themean}
@@ -91,14 +90,10 @@ findbeta<-function(themean=NULL,themedian=NULL,themode=NULL,
   param=c(a=finalshape1,b=finalshape2)
   input=c(tmetric=value,percentile=percentile,percentile.value=percentile.value)
   names(input)[1]<-name
-  if(silent==FALSE){
-    cat(paste("The desired Beta distribution that satisfies the specified conditions is: Beta(", round(finalshape1,2),",", round(finalshape2,2),") \n",
-              "Verification: The percentile value",round(qbeta(pr_n, finalshape1, finalshape2),2), "corresponds to the",pr_n,"th percentile \n"))
-    cat(paste("Descriptive statistics for this distribution can be found below:\n"))
-    return(list(parameters=param,summary=summary(sample_beta),input=input))
-  }
-  invisible(return(list(parameters=param,summary=summary(sample_beta),input=input)))
-  
+
+  out<-list(parameters=param,summary=summary(sample_beta),input=input)
+  class(out)<-"PriorGen"
+  invisible(return(out))
 }
 
 # fb1=findbeta(themedian = 0.5,lower.v = T,percentile = 0.999,percentile.value = 0.999, silent = F)

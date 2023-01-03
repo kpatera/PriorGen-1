@@ -10,7 +10,6 @@
 #' @param themode: specify your prior belief about the mode. It takes a value between 0 and 1. Not to be specified if a value has been given for the mean or the median.
 #' @param thevariance: specify your prior belief about the variance. If the selected variance is larger than possible, the variance will be adjusted downwards to create comply with the range of a probability.
 #' @param therange: specify your prior belief about the range. It should be a two number vector that c(ul,ll), where ul>0, ll<1 and ul<ll. This scale metric applies for themode and themedian options.
-#' @param silent: If TRUE an extended output is printed. If FALSE and stored in an object the function runs silently.
 #' @param seed: A fixed seed for replication purposes.
 #' @param nsims: Number of simulations for the creation of various summary metrics of the elicited prior.
 #'
@@ -37,7 +36,7 @@
 
 
 findbeta_raw<-function(themean=NULL,themedian=NULL,themode=NULL,
-                   thevariance=NULL, therange=c(0,1), silent=TRUE, seed=280385,
+                   thevariance=NULL, therange=c(0,1), seed=280385,
                    nsims=10000){
   # Cannot handle Beta(a,b) with a,b<1
   stopifnot ( (is.null(themean) + is.null(themedian) + is.null(themode)) == 2)
@@ -91,12 +90,7 @@ findbeta_raw<-function(themean=NULL,themedian=NULL,themode=NULL,
   input=c(tmetric=value,scalemetric_var_or_range=scalevalue); names(input)[1]<-name
   names(input)[1]<-name
   
-  if(silent==FALSE){
-    cat(paste("The desired Beta distribution that satisfies the specified conditions is: Beta(", round(a_p,2), round(b_p,2),") \n",
-              "Verification: The percentile value",round(qbeta(pr_n, a_p, b_p),2), "corresponds to the",pr_n,"th percentile \n"))
-    cat(paste("Descriptive statistics for this distribution can be found below (or in the defined object):\n"))
-    return(list(parameters=param,summary=summary(sample_beta),input=input,comment=out1))
-  }
-  invisible(return(list(parameters=param,summary=summary(sample_beta),input=input,comment=out1)))
-  
+  out<-list(parameters=param,summary=summary(sample_beta),input=input)
+  class(out)<-"PriorGen"
+  invisible(return(out))
 }

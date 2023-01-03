@@ -13,8 +13,6 @@ silent=TRUE, seed=280385, nsims=10000)
 
 \item{thevariance.cat:}{specify your prior belief about the variance. It takes a value among c("Very low","Low","Average","High","Very high").}
 
-\item{silent:}{If TRUE an extended output is printed. If FALSE and stored in an object the function runs silently.}
-
 \item{seed:}{A fixed seed for replication purposes.}
 
 \item{nsims:}{Number of simulations for the creation of various summary metrics of the elicited prior.}
