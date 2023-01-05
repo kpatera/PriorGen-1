@@ -28,6 +28,7 @@ plot.PriorGen<-function(findbeta.object,...){
   b_plot=findbeta.object$parameters[2]
   x=seq(0,1,0.001)
   y=dbeta(seq(0,1,0.001),a_plot,b_plot)
+  plot(x,y,...)
 #  if(lines==F){plot(x,x_beta,...)
 #  }else if (lines==T){lines(x,x_beta,...)
  # }
@@ -38,6 +39,7 @@ lines.PriorGen<-function(findbeta.object,...){
   b_plot=findbeta.object$parameters[2]
   x=seq(0,1,0.001)
   y=dbeta(seq(0,1,0.001),a_plot,b_plot)
+  lines(x,y,...)
   #  if(lines==F){plot(x,x_beta,...)
   #  }else if (lines==T){lines(x,x_beta,...)
   # }
@@ -50,6 +52,7 @@ plot.PriorGen2<-function(findbeta.object,...){
   b_plot=mean(findbeta.object$param_upper[2])
   x=seq(0,1,0.001)
   y=dbeta(seq(0,1,0.001),a_plot,b_plot)
+  plot(x,y,...)
   #  if(lines==F){plot(x,x_beta,...)
   #  }else if (lines==T){lines(x,x_beta,...)
   # }
@@ -60,6 +63,7 @@ lines.PriorGen2<-function(findbeta.object,...){
   b_plot=findbeta.object$parameters[2]
   x=seq(0,1,0.001)
   y=dbeta(seq(0,1,0.001),a_plot,b_plot)
+  lines(x,y,...)
   #  if(lines==F){plot(x,x_beta,...)
   #  }else if (lines==T){lines(x,x_beta,...)
   # }
