@@ -94,7 +94,7 @@ findbetamupsi_abstract<-function(themean.cat=c("Very low","Low","Average","High"
           percentile.value=percentile.value, psi.percentile=psi.percentile, 
           percentile.median=percentile.median, percentile95value=percentile95value)
   
-  out<-list(param_beta=param,param_gamma=ss2,param_upper=list(at=a*b,bt=a*(1-b)),summary=summary(sample_beta),input=input)
+  out<-list(param_beta=param,param_gamma=ss2,summary=summary(sample_beta),input=input, param_upper=list(at=a*b,bt=a*(1-b)))
   class(out)<-"PriorGen2"
   invisible(return(out))
 }
