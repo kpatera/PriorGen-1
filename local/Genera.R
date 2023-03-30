@@ -48,6 +48,8 @@ lintr::lint_package(path)
 usethis::use_build_ignore(c("local"))
 usethis::use_pkgdown() 
 
+# Check dependencies #####
+dependsOnPkgs("rJava")
 # Test ####
 library(testthat)
 library(PriorGen)
