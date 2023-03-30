@@ -2,9 +2,9 @@
 % Please edit documentation in R/findbeta_plot.R
 \name{plot.PriorGen}
 \alias{plot.PriorGen}
-\title{The findbeta plot function}
+\title{#' The findbeta plot function}
 \usage{
-function(findbeta.object, lines=FALSE, ...)
+plot(findbeta.object, ...)
 }
 \arguments{
 \item{findbeta.object:}{An object of type findbeta produces of one of the other PriorGen functions.}
@@ -28,9 +28,12 @@ A function that plots any object of the class findbeta.
 ##is expected to be generally low and its variance not that low but not that much neither.
 
 res_abs_1<-findbeta_abstract(themean.cat="Low", thevariance.cat="Average")
-findbeta_plot(res_abs_1,main="Plot of the findbeta_abstract function",lwd=3)
+plot(res_abs_1,main="Plot of the findbeta_abstract function",lwd=3,ylim=c(0,7))
 
-}
-\references{
-Branscum, A. J., Gardner, I. A., & Johnson, W. O. (2005): Estimation of diagnostic test sensitivity and specificity through Bayesian modeling. Preventive veterinary medicine, \bold{68}, 145--163.
+##Example 2
+## Hierarchical prior
+
+#' res_mult_1=findbetamupsi(themean=0.10, percentile=0.79, lower.v=TRUE, percentile.value=0.26, psi.percentile=0.95, percentile.median=0.28, percentile95value=0.3)
+plot(res_mult_1,main="Plot of the findbetamupsi function",lwd=3,ylim=c(0,7))
+
 }

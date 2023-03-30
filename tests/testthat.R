@@ -1,4 +1,4 @@
 library(testthat)
-library(EVI)
+#library(PriorGen)
 
-test_check("EVI")
+test_check("PriorGen")

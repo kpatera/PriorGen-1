@@ -19,7 +19,7 @@
 #' ##Based on the available literature the mean value for the sensitivity of a test
 #' ##is expected to be 0.90 and we can be 95\% sure that it is higher than 0.80.
 #' 
-#' findbeta(themean=0.90, percentile=0.95,lower.v=FALSE, percentile.value=0.80, silent=TRUE, seed=280385, nsims=10000)
+#' findbeta(themean=0.90, percentile=0.95,lower.v=FALSE, percentile.value=0.80, seed=280385, nsims=10000)
 #' 
 #' ##Example 2
 #' ##Based on the available literature the median value for the specificity of a

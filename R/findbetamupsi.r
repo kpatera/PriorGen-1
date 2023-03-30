@@ -69,6 +69,7 @@ findbetamupsi<-function(themean, percentile=0.95, lower.v=T, percentile.value,
   model <- function(x) c(F1 = qgamma(0.5, shape = x[1], scale = 1/x[2]) - 
                            alpha_t, F2 = qgamma(0.05, shape = x[1], scale = 1/x[2]) - 
                            beta_t)
+  
   if(root.method=="multiroot"){
     ss2 <- multiroot(f = model, start = c(5, 2), positive = T)
     a=rgamma(nsims,ss2$root[1],ss2$root[2])

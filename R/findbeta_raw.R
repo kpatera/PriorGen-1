@@ -24,7 +24,7 @@
 #' ##Based on the available literature the median value for the specificity of a
 #' ##test is expected to be 0.99 and its range between 0.1 and 1.
 #' 
-#' findbeta(themedian=0.0.7, therange=c(0.1,1))
+#' findbeta_raw(themedian=0.70, therange=c(0.1,1))
 #' 
 #' @export 
 #' @param parameters: The beta distribution parameters Beta(a,b)

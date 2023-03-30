@@ -38,7 +38,7 @@ A function to estimate (a) the parameters of a Beta distribution for the expecte
 ## Example
 ## The mean prevalence of a disease/infection for the units within an area/region
 ## is thought to be 0.20 with a variance equal to 0.03, with large heterogeneity 
-i.e. psi equals to 0.15.
+## i.e. psi equals to 0.15.
 
 findbetamupsi_raw(themean=0.20, thevariance = 0.03, thepsi=0.15)
 

@@ -20,7 +20,7 @@
 #' ## we are also confident that 90% of all units have a prevalence
 #' ## less or equal to 0.60 and we are 95% certain that it does not exceed 0.70
 #'
-#' findbetamupsi_panel(themean.vec=(0.4,0.2,0.1,0.3,0.4,0.5,0.1,0.02,0.04,0.05), psi.percentile=0.90, percentile.median=0.60, percentile95value=0.70)
+#' findbetamupsi_panel(themean.vec=c(0.4,0.2,0.1,0.3,0.4,0.5,0.1,0.02,0.04,0.05), psi.percentile=0.90, percentile.median=0.60, percentile95value=0.70)
 #' 
 #' @export 
 #' @param param_beta: The beta distribution parameters Beta(a,b)
