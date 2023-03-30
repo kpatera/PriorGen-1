@@ -1,15 +1,16 @@
 #' The findbeta (panel) function
 #'
-#' 
+#'
 #' A function to estimate the parameters alpha and beta of a Beta distribution based on the existing prior beliefs (data and/or expert opinion). Information is provided about the mean (or the median or the mode) and a corresponding scale metric, either the variance or the range of the parameter.
 #'
-#' @usage function(themean.vec=NULL, themedian.vec=NULL, themode.vec=NULL, silent=TRUE, seed=280385, nsims=10000)
+#' @usage findbeta_panel(themean.vec=NULL, themedian.vec=NULL,
+#'  themode.vec=NULL, seed=280385, nsims=10000)
 #'
-#' @param themean.vec: specify your prior belief about the mean. It takes a vector of means, with values between 0 and 1. Not to be specified if a vector has been given for the median or the mode.
-#' @param themedian.vec: specify your prior belief about the median. It takes a vector of medians, with values between 0 and 1. Not to be specified if a vector has been given for the mean or the mode.
-#' @param themode.vec: specify your prior belief about the mode. It takes a vector of modes, with values between 0 and 1. Not to be specified if a vector has been given for the mean or the median.
-#' @param seed: A fixed seed for replication purposes.
-#' @param nsims: Number of simulations for the creation of various summary metrics of the elicited prior.
+#' @param themean.vec specify your prior belief about the mean. It takes a vector of means, with values between 0 and 1. Not to be specified if a vector has been given for the median or the mode.
+#' @param themedian.vec specify your prior belief about the median. It takes a vector of medians, with values between 0 and 1. Not to be specified if a vector has been given for the mean or the mode.
+#' @param themode.vec specify your prior belief about the mode. It takes a vector of modes, with values between 0 and 1. Not to be specified if a vector has been given for the mean or the median.
+#' @param seed A fixed seed for replication purposes.
+#' @param nsims Number of simulations for the creation of various summary metrics of the elicited prior.
 #'
 #' @examples
 #' ## Example 1
@@ -29,9 +30,9 @@
 #' lines(resmea, lty = 2)
 #' lines(resmod, lty = 3)
 #' @export
-#' @param parameters: The beta distribution parameters Beta(a,b)
-#' @param summary: A basic summary of the elicited prior
-#' @param input: The initial input value that produced the above prior.
+#' @return parameters: The beta distribution parameters Beta(a,b)
+#' @return summary: A basic summary of the elicited prior
+#' @return input: The initial input value that produced the above prior.
 #'
 #' @references
 #' Branscum, A. J., Gardner, I. A., & Johnson, W. O. (2005): Estimation of diagnostic test sensitivity and specificity through Bayesian modeling. Preventive veterinary medicine, \bold{68}, 145--163.
@@ -56,7 +57,7 @@ findbeta_panel <- function(themean.vec = NULL, themedian.vec = NULL, themode.vec
   }
 
   stopifnot(((thevariance <= 0.5) + (therange[2] <= 1) + (therange[1] >= 0)) == 3)
-  out1 <- NULL
+  out <- NULL
   alpha <- 0.99995
   percentile <- 0.9999
 
@@ -71,7 +72,7 @@ findbeta_panel <- function(themean.vec = NULL, themedian.vec = NULL, themode.vec
   alpha <- 0.99995
   if (!is.null(themean)) {
     if ((themean + qnorm(alpha) * thevariance) > 1) {
-      out1 <- ("The set variance resulted in percentile.value greater than 1. The percentile.value was set to 1")
+      ("The set variance resulted in percentile.value greater than 1. The percentile.value was set to 1")
     }
     if ((themean + qnorm(alpha) * thevariance) > 1) {
       thevariance <- (1 - themean) / qnorm(alpha)
@@ -105,8 +106,7 @@ findbeta_panel <- function(themean.vec = NULL, themedian.vec = NULL, themode.vec
   }
 
 
-  a <- runif(1, 1, 10)
-  if (!is.null(themode) | !is.null(themedian)) {
+  if (!is.null(themode) || !is.null(themedian)) {
     pr_n <- percentile
   }
   if (!is.null(themean)) {
@@ -147,7 +147,7 @@ findbeta_panel <- function(themean.vec = NULL, themedian.vec = NULL, themode.vec
   set.seed(seed)
   sample_beta <- rbeta(nsims, finalshape1, finalshape2)
   param <- c(a = finalshape1, b = finalshape2)
-  input <- c(tmetric = value, percentile = percentile, percentile.value = percentile.value)
+  input <- c(tmetric = value, percentile = percentile, scalevalue=scalevalue, percentile.value = percentile.value)
   names(input)[1] <- name
 
   out <- list(parameters = param, summary = summary(sample_beta), input = input)

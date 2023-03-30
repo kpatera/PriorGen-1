@@ -3,15 +3,16 @@
 #' A function to estimate the parameters alpha and beta of a Beta distribution based on the existing prior beliefs (data and/or expert opinion). Information is provided about the mean (or the median or the mode) and a corresponding scale metric, either the variance or the range of the parameter.
 #'
 #'
-#' @usage function(themean=NULL,themedian=NULL,themode=NULL, thevariance=NULL, therange=c(0,1), silent=TRUE, seed=280385, nsims=10000)
+#' @usage findbeta_raw(themean=NULL,themedian=NULL,themode=NULL,
+#'  thevariance=NULL, therange=c(0,1), seed=280385, nsims=10000)
 #'
-#' @param themean: specify your prior belief about the mean. It takes a value between 0 and 1. Not to be specified if a value has been given for the median or the mode.
-#' @param themedian: specify your prior belief about the median. It takes a value between 0 and 1. Not to be specified if a value has been given for the mean or the mode.
-#' @param themode: specify your prior belief about the mode. It takes a value between 0 and 1. Not to be specified if a value has been given for the mean or the median.
-#' @param thevariance: specify your prior belief about the variance. If the selected variance is larger than possible, the variance will be adjusted downwards to create comply with the range of a probability.
-#' @param therange: specify your prior belief about the range. It should be a two number vector that c(ul,ll), where ul>0, ll<1 and ul<ll. This scale metric applies for themode and themedian options.
-#' @param seed: A fixed seed for replication purposes.
-#' @param nsims: Number of simulations for the creation of various summary metrics of the elicited prior.
+#' @param themean specify your prior belief about the mean. It takes a value between 0 and 1. Not to be specified if a value has been given for the median or the mode.
+#' @param themedian specify your prior belief about the median. It takes a value between 0 and 1. Not to be specified if a value has been given for the mean or the mode.
+#' @param themode specify your prior belief about the mode. It takes a value between 0 and 1. Not to be specified if a value has been given for the mean or the median.
+#' @param thevariance specify your prior belief about the variance. If the selected variance is larger than possible, the variance will be adjusted downwards to create comply with the range of a probability.
+#' @param therange specify your prior belief about the range. It should be a two number vector that c(ul,ll), where ul>0, ll<1 and ul<ll. This scale metric applies for themode and themedian options.
+#' @param seed A fixed seed for replication purposes.
+#' @param nsims Number of simulations for the creation of various summary metrics of the elicited prior.
 #'
 #' @examples
 #' ## Example 1
@@ -32,9 +33,9 @@
 #' findbeta_raw(themode = 0.70, therange = c(0.1, 1))
 #'
 #' @export
-#' @param parameters: The beta distribution parameters Beta(a,b)
-#' @param summary: A basic summary of the elicited prior
-#' @param input: The initial input value that produced the above prior.
+#' @return parameters The beta distribution parameters Beta(a,b)
+#' @return summary A basic summary of the elicited prior
+#' @return input The initial input value that produced the above prior.
 #'
 #' @references
 #' Branscum, A. J., Gardner, I. A., & Johnson, W. O. (2005): Estimation of diagnostic test sensitivity and specificity through Bayesian modeling. Preventive veterinary medicine, \bold{68}, 145--163.
@@ -49,11 +50,11 @@ findbeta_raw <- function(themean = NULL, themedian = NULL, themode = NULL,
 
   alpha <- 0.99995
   pr_n <- 0.9999
-  out1 <- NULL
+  out <- NULL
 
   if (!is.null(themean)) {
     if ((themean + qnorm(alpha) * thevariance) > 1) {
-      out1 <- c("The set variance resulted in percentiles lower than 0 or greater than 1. The variance was adjusted.")
+      c("The set variance resulted in percentiles lower than 0 or greater than 1. The variance was adjusted.")
     }
     if ((themean + qnorm(alpha) * thevariance) > 1) {
       thevariance <- (1 - themean) / qnorm(alpha)
@@ -92,7 +93,6 @@ findbeta_raw <- function(themean = NULL, themedian = NULL, themode = NULL,
   }
 
 
-  a <- runif(1, 1, 10)
   if (is.null(themode) && is.null(themedian)) {
     to.minimize <- function(a) {
       abs(qbeta(pr_n, shape1 = a, shape2 = a * (1 - themean) / themean) - percentile.value)

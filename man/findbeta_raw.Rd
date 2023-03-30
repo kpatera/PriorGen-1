@@ -4,28 +4,30 @@
 \alias{findbeta_raw}
 \title{The findbeta (raw) function}
 \usage{
-function(themean=NULL,themedian=NULL,themode=NULL, thevariance=NULL, therange=c(0,1), silent=TRUE, seed=280385, nsims=10000)
+findbeta_raw(themean=NULL,themedian=NULL,themode=NULL,
+ thevariance=NULL, therange=c(0,1), seed=280385, nsims=10000)
 }
 \arguments{
-\item{themean:}{specify your prior belief about the mean. It takes a value between 0 and 1. Not to be specified if a value has been given for the median or the mode.}
+\item{themean}{specify your prior belief about the mean. It takes a value between 0 and 1. Not to be specified if a value has been given for the median or the mode.}
 
-\item{themedian:}{specify your prior belief about the median. It takes a value between 0 and 1. Not to be specified if a value has been given for the mean or the mode.}
+\item{themedian}{specify your prior belief about the median. It takes a value between 0 and 1. Not to be specified if a value has been given for the mean or the mode.}
 
-\item{themode:}{specify your prior belief about the mode. It takes a value between 0 and 1. Not to be specified if a value has been given for the mean or the median.}
+\item{themode}{specify your prior belief about the mode. It takes a value between 0 and 1. Not to be specified if a value has been given for the mean or the median.}
 
-\item{thevariance:}{specify your prior belief about the variance. If the selected variance is larger than possible, the variance will be adjusted downwards to create comply with the range of a probability.}
+\item{thevariance}{specify your prior belief about the variance. If the selected variance is larger than possible, the variance will be adjusted downwards to create comply with the range of a probability.}
 
-\item{therange:}{specify your prior belief about the range. It should be a two number vector that c(ul,ll), where ul>0, ll<1 and ul<ll. This scale metric applies for themode and themedian options.}
+\item{therange}{specify your prior belief about the range. It should be a two number vector that c(ul,ll), where ul>0, ll<1 and ul<ll. This scale metric applies for themode and themedian options.}
 
-\item{seed:}{A fixed seed for replication purposes.}
+\item{seed}{A fixed seed for replication purposes.}
 
-\item{nsims:}{Number of simulations for the creation of various summary metrics of the elicited prior.}
+\item{nsims}{Number of simulations for the creation of various summary metrics of the elicited prior.}
+}
+\value{
+parameters The beta distribution parameters Beta(a,b)
 
-\item{parameters:}{The beta distribution parameters Beta(a,b)}
+summary A basic summary of the elicited prior
 
-\item{summary:}{A basic summary of the elicited prior}
-
-\item{input:}{The initial input value that produced the above prior.}
+input The initial input value that produced the above prior.
 }
 \description{
 A function to estimate the parameters alpha and beta of a Beta distribution based on the existing prior beliefs (data and/or expert opinion). Information is provided about the mean (or the median or the mode) and a corresponding scale metric, either the variance or the range of the parameter.

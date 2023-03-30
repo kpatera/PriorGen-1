@@ -4,24 +4,24 @@
 \alias{findbeta_abstract}
 \title{The findbeta (abstract) function}
 \usage{
-function(themean.cat=c("Very low","Low","Average","High","Very high"),
-thevariance.cat=c("Very low","Low","Average","High","Very high"),
-silent=TRUE, seed=280385, nsims=10000)
+findbeta_abstract(themean.cat, thevariance.cat,
+seed=280385, nsims=10000)
 }
 \arguments{
-\item{themean.cat:}{specify your prior belief about the mean. It takes a value among c("Very low","Low","Average","High","Very high").}
+\item{themean.cat}{specify your prior belief about the mean. It takes a value among c("Very low","Low","Average","High","Very high").}
 
-\item{thevariance.cat:}{specify your prior belief about the variance. It takes a value among c("Very low","Low","Average","High","Very high").}
+\item{thevariance.cat}{specify your prior belief about the variance. It takes a value among c("Very low","Low","Average","High","Very high").}
 
-\item{seed:}{A fixed seed for replication purposes.}
+\item{seed}{A fixed seed for replication purposes.}
 
-\item{nsims:}{Number of simulations for the creation of various summary metrics of the elicited prior.}
+\item{nsims}{Number of simulations for the creation of various summary metrics of the elicited prior.}
+}
+\value{
+parameters: The beta distribution parameters Beta(a,b)
 
-\item{parameters:}{The beta distribution parameters Beta(a,b)}
+summary: A basic summary of the elicited prior
 
-\item{summary:}{A basic summary of the elicited prior}
-
-\item{input:}{The initial input value that produced the above prior.}
+input: The initial input value that produced the above prior.
 }
 \description{
 A function to estimate the parameters alpha and beta of a Beta distribution based on the existing prior beliefs (data and/or expert opinion).

@@ -4,24 +4,26 @@
 \alias{findbeta_panel}
 \title{The findbeta (panel) function}
 \usage{
-function(themean.vec=NULL, themedian.vec=NULL, themode.vec=NULL, silent=TRUE, seed=280385, nsims=10000)
+findbeta_panel(themean.vec=NULL, themedian.vec=NULL,
+ themode.vec=NULL, seed=280385, nsims=10000)
 }
 \arguments{
-\item{themean.vec:}{specify your prior belief about the mean. It takes a vector of means, with values between 0 and 1. Not to be specified if a vector has been given for the median or the mode.}
+\item{themean.vec}{specify your prior belief about the mean. It takes a vector of means, with values between 0 and 1. Not to be specified if a vector has been given for the median or the mode.}
 
-\item{themedian.vec:}{specify your prior belief about the median. It takes a vector of medians, with values between 0 and 1. Not to be specified if a vector has been given for the mean or the mode.}
+\item{themedian.vec}{specify your prior belief about the median. It takes a vector of medians, with values between 0 and 1. Not to be specified if a vector has been given for the mean or the mode.}
 
-\item{themode.vec:}{specify your prior belief about the mode. It takes a vector of modes, with values between 0 and 1. Not to be specified if a vector has been given for the mean or the median.}
+\item{themode.vec}{specify your prior belief about the mode. It takes a vector of modes, with values between 0 and 1. Not to be specified if a vector has been given for the mean or the median.}
 
-\item{seed:}{A fixed seed for replication purposes.}
+\item{seed}{A fixed seed for replication purposes.}
 
-\item{nsims:}{Number of simulations for the creation of various summary metrics of the elicited prior.}
+\item{nsims}{Number of simulations for the creation of various summary metrics of the elicited prior.}
+}
+\value{
+parameters: The beta distribution parameters Beta(a,b)
 
-\item{parameters:}{The beta distribution parameters Beta(a,b)}
+summary: A basic summary of the elicited prior
 
-\item{summary:}{A basic summary of the elicited prior}
-
-\item{input:}{The initial input value that produced the above prior.}
+input: The initial input value that produced the above prior.
 }
 \description{
 A function to estimate the parameters alpha and beta of a Beta distribution based on the existing prior beliefs (data and/or expert opinion). Information is provided about the mean (or the median or the mode) and a corresponding scale metric, either the variance or the range of the parameter.

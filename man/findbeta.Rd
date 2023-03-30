@@ -4,30 +4,33 @@
 \alias{findbeta}
 \title{The findbeta function}
 \usage{
-findbeta(themean=NULL, themedian=NULL, themode=NULL, percentile=0.95,lower.v=F, percentile.value, silent=TRUE, seed=280385, nsims=10000)
+findbeta(themean=NULL, themedian=NULL, themode=NULL,
+ percentile=0.95,lower.v=F, percentile.value,
+ seed=280385, nsims=10000)
 }
 \arguments{
-\item{themean:}{specify your prior belief about the mean. It takes a value between 0 and 1. Not to be specified if a value has been given for the median or the mode.}
+\item{themean}{specify your prior belief about the mean. It takes a value between 0 and 1. Not to be specified if a value has been given for the median or the mode.}
 
-\item{themedian:}{specify your prior belief about the median. It takes a value between 0 and 1. Not to be specified if a value has been given for the mean or the mode.}
+\item{themedian}{specify your prior belief about the median. It takes a value between 0 and 1. Not to be specified if a value has been given for the mean or the mode.}
 
-\item{themode:}{specify your prior belief about the mode. It takes a value between 0 and 1. Not to be specified if a value has been given for the mean or the median.}
+\item{themode}{specify your prior belief about the mode. It takes a value between 0 and 1. Not to be specified if a value has been given for the mean or the median.}
 
-\item{percentile:}{specify the level of confidence that the true value of the mean (or the median or the mode) is greater or lower than the percentile.value. It takes a value between 0 and 1 and the default =0.95.}
+\item{percentile}{specify the level of confidence that the true value of the mean (or the median or the mode) is greater or lower than the percentile.value. It takes a value between 0 and 1 and the default =0.95.}
 
-\item{lower.v:}{logical, if TRUE the specified percentile.value is the upper limit for the mean (or the median or the mode) at the specified confidence level (percentile). If {FALSE} the specified percentile.value is the lower limit for the mean (or the median or the mode) at the specified confidence level (percentile). The default is FALSE.}
+\item{lower.v}{logical, if TRUE the specified percentile.value is the upper limit for the mean (or the median or the mode) at the specified confidence level (percentile). If {FALSE} the specified percentile.value is the lower limit for the mean (or the median or the mode) at the specified confidence level (percentile). The default is FALSE.}
 
-\item{percentile.value:}{specify the upper or lower limit for the mean (or the median or the mode) at the specified level of confidence (percentile). It takes a value between 0 and 1.}
+\item{percentile.value}{specify the upper or lower limit for the mean (or the median or the mode) at the specified level of confidence (percentile). It takes a value between 0 and 1.}
 
-\item{seed:}{A fixed seed for replication purposes.}
+\item{seed}{A fixed seed for replication purposes.}
 
-\item{nsims:}{Number of simulations for the creation of various summary metrics of the elicited prior.}
+\item{nsims}{Number of simulations for the creation of various summary metrics of the elicited prior.}
+}
+\value{
+parameters: The beta distribution parameters Beta(a,b)
 
-\item{parameters:}{The beta distribution parameters Beta(a,b)}
+summary: A basic summary of the elicited prior
 
-\item{summary:}{A basic summary of the elicited prior}
-
-\item{input:}{The initial input value that produced the above prior.}
+input: The initial input value that produced the above prior.
 }
 \description{
 A function to estimate the parameters alpha and beta of a Beta distribution based on the existing prior beliefs (data and/or expert opinion). Information is provided about the mean (or the median or the mode) and whether it is lower or greater that a certain value with a pre-specified certainty (usually set at 95\\%)
@@ -37,20 +40,29 @@ A function to estimate the parameters alpha and beta of a Beta distribution base
 ## Based on the available literature the mean value for the sensitivity of a test
 ## is expected to be 0.90 and we can be 95\\% sure that it is higher than 0.80.
 
-findbeta(themean = 0.90, percentile = 0.95, lower.v = FALSE, percentile.value = 0.80, seed = 280385, nsims = 10000)
+findbeta(
+  themean = 0.90, percentile = 0.95, lower.v = FALSE,
+  percentile.value = 0.80, seed = 280385, nsims = 10000
+)
 
 ## Example 2
 ## Based on the available literature the median value for the specificity of a
 ## test is expected to be 0.99 and we can be 95\\% sure that it is higher than 0.90.
 
-findbeta(themedian = 0.99, percentile = 0.95, lower.v = FALSE, percentile.value = 0.90)
+findbeta(
+  themedian = 0.99, percentile = 0.95, lower.v = FALSE,
+  percentile.value = 0.90
+)
 ##Example 3
 ##The most probable value (mode) for the prevalence of a disease/infection in a
 ##population is expected to be 0.15 and we are 90\\% sure that it is less than 0.40.
 
-findbeta(themode=0.15, percentile=0.90,lower.v=TRUE, percentile.value=0.40)
+findbeta(themode=0.15, percentile=0.90,lower.v=TRUE,
+percentile.value=0.40)
 
 }
 \references{
-Branscum, A. J., Gardner, I. A., & Johnson, W. O. (2005): Estimation of diagnostic test sensitivity and specificity through Bayesian modeling. Preventive veterinary medicine, \bold{68}, 145--163.
+Branscum, A. J., Gardner, I. A., & Johnson, W. O. (2005): Estimation
+of diagnostic test sensitivity and specificity through Bayesian modeling.
+Preventive veterinary medicine, \bold{68}, 145--163.
 }

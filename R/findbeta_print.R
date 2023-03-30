@@ -1,12 +1,11 @@
 #' The findbeta plot function
 #'
-#' 
+#'
 #' A function that prints a summary any object of the class findbeta.
 #'
-#' @usage print(x,...)
 #' @rdname print.PriorGen
-#' @param x: An object of type findbeta produced of one of the main PriorGen functions.
-#'
+#' @param x An object of type findbeta produced of one of the main PriorGen functions.
+#' @param ... Empty
 #' @examples
 #' ## Example 1
 #' ## Based on the available literature the mean value for the sensitivity of a test
@@ -16,13 +15,18 @@
 #'
 #' ## Example 2
 #' ## Hierarchical prior
-#' res_mult_1 <- findbetamupsi(themean = 0.10, percentile = 0.79, lower.v = TRUE, percentile.value = 0.26, psi.percentile = 0.95, percentile.median = 0.28, percentile95value = 0.3)
+#' res_mult_1 <- findbetamupsi(
+#'   themean = 0.10, percentile = 0.79,
+#'   lower.v = TRUE, percentile.value = 0.26, psi.percentile = 0.95,
+#'   percentile.median = 0.28, percentile95value = 0.3
+#' )
 #' print(res_mult_1)
 #'
 #' @export
 print.PriorGen <- function(x, ...) {
   findbeta.object <- x
-  if (class(findbeta.object) != "PriorGen") {
+  classchk <- as.character(class(findbeta.object))
+  if (classchk != "PriorGen" && classchk != "PriorGen2") {
     stop("Provide an object of class PriorGen" & class(findbeta.object) != "PriorGen2")
   }
   if (length(findbeta.object) == 3) {

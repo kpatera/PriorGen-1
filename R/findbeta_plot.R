@@ -1,33 +1,47 @@
 #' The findbeta plot function
 #'
-#' 
+#'
 #' A function that plots any object of the class findbeta.
 #'
-#' @usage plot(x, ...)
 #' @rdname plot.PriorGen
-#' @param x: An object of type findbeta produces of one of the other PriorGen functions.
-#' @param lines: If lines=TRUE then it plots over the last plotted plot.
-#' @param ...: Additional base plot parameters.
-#'
+#' @param x An object of type findbeta produces of one of 
+#' the other PriorGen functions.
+#' @param ... More basic plot arguments
 #' @examples
 #' ## Example 1
-#' ## Based on the available literature the mean value for the sensitivity of a test
-#' ## is expected to be generally low and its variance not that low but not that much neither.
+#' ## Based on the available literature the mean value for the 
+#' ## sensitivity of a test is expected to be generally low and 
+#' ## its variance not that low but not that much neither.
 #'
-#' res_abs_1 <- findbeta_abstract(themean.cat = "Low", thevariance.cat = "Average")
-#' plot(res_abs_1, main = "Plot of the findbeta_abstract function", lwd = 3, ylim = c(0, 7))
+#' res_abs_1 <- findbeta_abstract(
+#'   themean.cat = "Low",
+#'   thevariance.cat = "Average"
+#' )
+#' plot(res_abs_1,
+#'   main = "Plot of the findbeta_abstract function",
+#'   lwd = 3, ylim = c(0, 7)
+#' )
 #'
 #' ## Example 2
 #' ## Hierarchical prior
 #'
-#' res_mult_1 <- findbetamupsi(themean = 0.10, percentile = 0.79, lower.v = TRUE, percentile.value = 0.26, psi.percentile = 0.95, percentile.median = 0.28, percentile95value = 0.3)
-#' plot(res_mult_1, main = "Plot of the findbetamupsi function", lwd = 3, ylim = c(0, 7))
+#' res_mult_1 <- findbetamupsi(
+#'   themean = 0.10, percentile = 0.79,
+#'   lower.v = TRUE, percentile.value = 0.26, psi.percentile = 0.95,
+#'   percentile.median = 0.28, percentile95value = 0.3
+#' )
+#'
+#' plot(res_mult_1,
+#'   main = "Plot of the findbetamupsi function",
+#'   lwd = 3, ylim = c(0, 7)
+#' )
 #'
 #' @export
 #'
 plot.PriorGen <- function(x, ...) {
   findbeta.object <- x
-  if (class(findbeta.object) != "PriorGen" & class(findbeta.object) != "PriorGen2") {
+  classchk <- as.character(class(findbeta.object))
+  if (classchk != "PriorGen" && classchk != "PriorGen2") {
     stop("Provide an object of class PriorGen or PriorGen2")
   }
   if (length(findbeta.object) == 3) {

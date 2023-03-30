@@ -4,44 +4,47 @@
 \alias{findbetamupsi_raw}
 \title{The findbetamupsi (raw) function}
 \usage{
-findbetamupsi_raw(themean, thevariance,  psi.percentile=0.90, percentile.median, percentile95value)
+findbetamupsi_raw(themean = 0.2, thevariance = 0.05, thepsi = 0.5,
+seed = 280385, nsims = 10000, root.method = "multiroot")
 }
 \arguments{
-\item{themean:}{specify your prior belief about the mean. It takes a value between 0 and 1.}
+\item{themean}{specify your prior belief about the mean. It takes a value between 0 and 1.}
 
-\item{thevariance:}{specify your prior belief about the variance. If the selected variance is larger than possible, the variance will be adjusted downwards to create comply with the range of a probability.}
+\item{thevariance}{specify your prior belief about thevariance. If the selected variance is larger than possible, the variance will be adjusted downwards to create comply with the range of a probability.}
 
-\item{thepsi:}{specify your prior belief about the between-study variance. Large values of psi correspond to low heterogeneity, low values of psi correspond to large heterogeneity.}
+\item{thepsi}{specify your prior belief about the between-study variance. Large values of psi correspond to low heterogeneity, low values of psi correspond to large heterogeneity.}
 
-\item{silent:}{If TRUE an extended output is printed. If FALSE and stored in an object the function runs silently.}
+\item{seed}{A fixed seed for replication purposes.}
 
-\item{seed:}{A fixed seed for replication purposes.}
+\item{nsims}{Number of simulations for the creation of various summary metrics of the elicited prior.}
 
-\item{nsims:}{Number of simulations for the creation of various summary metrics of the elicited prior.}
+\item{root.method}{Choose between two alternatives to solve the two non-linear equations to identify the hyperparameters of psi. root.method="multiroot" involves the basic function of the rootSolve package, root.method="nleqslv" involves the base  functions of the nleqslv package.}
+}
+\value{
+param_beta: The beta distribution parameters Beta(a,b)
 
-\item{root.method:}{Choose between two alternatives to solve the two non-linear equations to identify the hyperparameters of psi. root.method="multiroot" involves the basic function of the rootSolve package, root.method="nleqslv" involves the base functions of the nleqslv package.}
+param_gamma: The gamma distribution parameters gamma(a,b)
 
-\item{param_beta:}{The beta distribution parameters Beta(a,b)}
+summary: A basic summary of the elicited prior
 
-\item{param_gamma:}{The gamma distribution parameters gamma(a,b)}
+input: The initial input value that produced the above prior.
 
-\item{summary:}{A basic summary of the elicited prior}
-
-\item{input:}{The initial input value that produced the above prior.}
-
-\item{param_upper:}{simulated mu and psi of Beta(mu psi,psi(1-mu))}
+param_upper: simulated mu and psi of Beta(mu psi,psi(1-mu))
 }
 \description{
 A function to estimate (a) the parameters of a Beta distribution for the expected mean of a proportion - usually the prevalence of disease/infection for the units in an area/region and (b) the parameters of a Gamma distribution expressing our prior belief about the variability of the prevalence estimates across the units of the area/region under consideration.
 }
 \examples{
 ## Example
-## The mean prevalence of a disease/infection for the units within an area/region
-## is thought to be 0.20 with a variance equal to 0.03, with large heterogeneity
-## i.e. psi equals to 0.15.
+## The mean prevalence of a disease/infection for the units
+## within an area/region is thought to be 0.20 with a variance
+## equal to 0.03, with large heterogeneity i.e. psi equals to 0.15.
 
 findbetamupsi_raw(themean = 0.20, thevariance = 0.03, thepsi = 0.15)
-findbetamupsi_raw(themean = 0.20, thevariance = 0.03, thepsi = 0.15, root.method = "nleqslv")
+findbetamupsi_raw(
+  themean = 0.20, thevariance = 0.03, thepsi = 0.15,
+  root.method = "nleqslv"
+)
 
 }
 \references{

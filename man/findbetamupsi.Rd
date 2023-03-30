@@ -4,38 +4,41 @@
 \alias{findbetamupsi}
 \title{The findbetamupsi function}
 \usage{
-findbetamupsi(themean, percentile=0.95, lower.v=T, percentile.value,  psi.percentile=0.90, percentile.median, percentile95value)
+findbetamupsi(themean, percentile=0.95, lower.v=T, percentile.value,
+  psi.percentile=0.90, percentile.median, percentile95value,
+  seed = 280385, nsims = 10000, root.method = "multiroot")
 }
 \arguments{
-\item{themean:}{specify your prior belief about the mean. It takes a value between 0 and 1.}
+\item{themean}{specify your prior belief about the mean. It takes a value between 0 and 1.}
 
-\item{percentile:}{specify the level of confidence that the true value of the mean is greater or lower than the percentile.value. It takes a value between 0 and 1 and the default is 0.95.}
+\item{percentile}{specify the level of confidence that the true value of the mean is greater or lower than the percentile.value. It takes a value between 0 and 1 and the default is 0.95.}
 
-\item{lower.v:}{logical, if TRUE the specified percentile.value is the upper limit for the mean at the specified confidence level (percentile). If FALSE the specified percentile.value is the lower limit for the mean at the specified confidence level (percentile).The default is TRUE.}
+\item{lower.v}{logical, if TRUE the specified percentile.value is the upper limit for the mean at the specified confidence level (percentile). If FALSE the specified percentile.value is the lower limit for the mean at the specified confidence level (percentile).The default is TRUE.}
 
-\item{percentile.value:}{specify the upper or lower limit for the mean at the specified level of confidence (percentile). It takes a value between 0 and 1.}
+\item{percentile.value}{specify the upper or lower limit for the mean at the specified level of confidence (percentile). It takes a value between 0 and 1.}
 
-\item{psi.percentile:}{specify the level of confidence that a certain fraction of the units under study has a prevalence less than the percentile.median. It takes a value between 0 and 1 and the default is 0.90.}
+\item{psi.percentile}{specify the level of confidence that a certain fraction of the units under study has a prevalence less than the percentile.median. It takes a value between 0 and 1 and the default is 0.90.}
 
-\item{percentile.median:}{specify the median value that corresponds to the defined psi.percentile. It takes a value between 0 and 1 and has to be higher than both themean and the percentile.}
+\item{percentile.median}{specify the median value that corresponds to the defined psi.percentile. It takes a value between 0 and 1 and has to be higher than both themean and the percentile.}
 
-\item{percentile95value:}{specify the value that the percentile.median does not exceed with 95\% confidence. It takes a value between 0 and 1 and has to be higher than the percentile.median.}
+\item{percentile95value}{specify the value that the percentile.median does not exceed with 95\% confidence. It takes a value between 0 and 1 and has to be higher than the percentile.median.}
 
-\item{seed:}{A fixed seed for replication purposes.}
+\item{seed}{A fixed seed for replication purposes.}
 
-\item{nsims:}{Number of simulations for the creation of various summary metrics of the elicited prior.}
+\item{nsims}{Number of simulations for the creation of various summary metrics of the elicited prior.}
 
-\item{root.method:}{Choose between two alternatives to solve the two non-linear equations to identify the hyperparameters of psi. root.method="multiroot" involves the basic function of the rootSolve package, root.method="nleqslv" involves the base functions of the nleqslv package.}
+\item{root.method}{Choose between two alternatives to solve the two non-linear equations to identify the hyperparameters of psi. root.method="multiroot" involves the basic function of the rootSolve package, root.method="nleqslv" involves the base functions of the nleqslv package.}
+}
+\value{
+param_beta: The beta distribution parameters Beta(a,b)
 
-\item{param_beta:}{The beta distribution parameters Beta(a,b)}
+param_gamma: The gamma distribution parameters gamma(a,b)
 
-\item{param_gamma:}{The gamma distribution parameters gamma(a,b)}
+summary: A basic summary of the elicited prior
 
-\item{summary:}{A basic summary of the elicited prior}
+input: The initial input value that produced the above prior.
 
-\item{input:}{The initial input value that produced the above prior.}
-
-\item{param_upper:}{simulated mu and psi of Beta(mu psi,psi(1-mu))}
+param_upper: simulated mu and psi of Beta(mu psi,psi(1-mu))
 }
 \description{
 A function to estimate (a) the parameters of a Beta distribution for the expected mean of a proportion - usually the prevalence of disease/infection for the units in an area/region and (b) the parameters of a Gamma distribution expressing our prior belief about the variability of the prevalence estimates across the units of the area/region under consideration.
@@ -47,8 +50,19 @@ A function to estimate (a) the parameters of a Beta distribution for the expecte
 ## Within this area, we are also confident that 90\% of all units have a prevalence
 ## less or equal to 0.50 and we are 95\% certain that it does not exceed 0.60
 
-res1 <- findbetamupsi(themean = 0.20, percentile = 0.99, lower.v = TRUE, percentile.value = 0.30, psi.percentile = 0.90, percentile.median = 0.50, percentile95value = 0.60)
-res2 <- findbetamupsi(themean = 0.20, percentile = 0.99, lower.v = TRUE, percentile.value = 0.30, psi.percentile = 0.90, percentile.median = 0.50, percentile95value = 0.60, root.method = "nleqslv")
+res1 <- findbetamupsi(
+  themean = 0.20, percentile = 0.99,
+  lower.v = TRUE, percentile.value = 0.30, psi.percentile = 0.90,
+  percentile.median = 0.50, percentile95value = 0.60
+)
+
+res2 <- findbetamupsi(
+  themean = 0.20, percentile = 0.99,
+  lower.v = TRUE, percentile.value = 0.30, psi.percentile = 0.90,
+  percentile.median = 0.50, percentile95value = 0.60,
+  root.method = "nleqslv"
+)
+
 res1
 res2
 

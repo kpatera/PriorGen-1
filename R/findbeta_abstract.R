@@ -4,14 +4,13 @@
 #' General information is provided about the mean in terms of c("Very low","Low","Average","High","Very high"). The same holds for the variance parameter.
 #'
 #'
-#' @usage function(themean.cat=c("Very low","Low","Average","High","Very high"),
-#' thevariance.cat=c("Very low","Low","Average","High","Very high"),
-#' silent=TRUE, seed=280385, nsims=10000)
+#' @usage findbeta_abstract(themean.cat, thevariance.cat,
+#' seed=280385, nsims=10000)
 #'
-#' @param themean.cat: specify your prior belief about the mean. It takes a value among c("Very low","Low","Average","High","Very high").
-#' @param thevariance.cat: specify your prior belief about the variance. It takes a value among c("Very low","Low","Average","High","Very high").
-#' @param seed: A fixed seed for replication purposes.
-#' @param nsims: Number of simulations for the creation of various summary metrics of the elicited prior.
+#' @param themean.cat specify your prior belief about the mean. It takes a value among c("Very low","Low","Average","High","Very high").
+#' @param thevariance.cat specify your prior belief about the variance. It takes a value among c("Very low","Low","Average","High","Very high").
+#' @param seed A fixed seed for replication purposes.
+#' @param nsims Number of simulations for the creation of various summary metrics of the elicited prior.
 #'
 #' @examples
 #' ## Example 1
@@ -21,9 +20,9 @@
 #' findbeta_abstract(themean.cat = "Low", thevariance.cat = "Average")
 #'
 #' @export
-#' @param parameters: The beta distribution parameters Beta(a,b)
-#' @param summary: A basic summary of the elicited prior
-#' @param input: The initial input value that produced the above prior.
+#' @return parameters: The beta distribution parameters Beta(a,b)
+#' @return summary: A basic summary of the elicited prior
+#' @return input: The initial input value that produced the above prior.
 #'
 #' @references
 #' Branscum, A. J., Gardner, I. A., & Johnson, W. O. (2005): Estimation of diagnostic test sensitivity and specificity through Bayesian modeling. Preventive veterinary medicine, \bold{68}, 145--163.
@@ -37,8 +36,8 @@ findbeta_abstract <- function(themean.cat = c("Very low", "Low", "Average", "Hig
   thevariance.optim <- seq(0.001, 0.5, by = 0.001)
   thevar_max <- thevariance.optim[length(which(themean + qnorm(alpha) * thevariance.optim < 1))]
   thevariance <- seq(0.001, thevar_max, length.out = 5)[which(levels == thevariance.cat)]
-  out1 <- NULL
-  percentile <- 0.9999
+  out <- NULL
+  # percentile <- 0.9999
   name <- "themean"
   value <- themean
   scalevalue <- thevariance
@@ -46,7 +45,6 @@ findbeta_abstract <- function(themean.cat = c("Very low", "Low", "Average", "Hig
 
 
 
-  a <- runif(1, 1, 10)
   pr_n <- 0.999
 
   to.minimize <- function(a) {

@@ -1,3 +1,4 @@
+# load funs#### 
 require(devtools)
 require(remotes)
 remotes::install_github("kpatera/PriorGen-1",force = T)
@@ -43,6 +44,9 @@ styler::style_pkg(pkg = path)
 # Detecting lints ####
 lintr::lint_package(path)
 
+# Exclude directories ####
+usethis::use_build_ignore(c("local"))
+usethis::use_pkgdown() 
 
 # Test ####
 library(testthat)
@@ -51,6 +55,7 @@ library(PriorGen)
 test_check("PriorGen")
 
 
+# Check commands ####
 out<-findbeta(themode=0.15, percentile=0.90,lower.v=TRUE, percentile.value=0.40)
 out2<-findbeta(themode=0.20, percentile=0.90,lower.v=TRUE, percentile.value=0.40)
 plot(out,type="l")

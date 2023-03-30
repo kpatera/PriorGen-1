@@ -4,10 +4,12 @@
 \alias{print.PriorGen}
 \title{The findbeta plot function}
 \usage{
-print(x,...)
+\method{print}{PriorGen}(x, ...)
 }
 \arguments{
-\item{x:}{An object of type findbeta produced of one of the main PriorGen functions.}
+\item{x}{An object of type findbeta produced of one of the main PriorGen functions.}
+
+\item{...}{Empty}
 }
 \description{
 A function that prints a summary any object of the class findbeta.
@@ -21,7 +23,11 @@ print(res_abs_1)
 
 ## Example 2
 ## Hierarchical prior
-res_mult_1 <- findbetamupsi(themean = 0.10, percentile = 0.79, lower.v = TRUE, percentile.value = 0.26, psi.percentile = 0.95, percentile.median = 0.28, percentile95value = 0.3)
+res_mult_1 <- findbetamupsi(
+  themean = 0.10, percentile = 0.79,
+  lower.v = TRUE, percentile.value = 0.26, psi.percentile = 0.95,
+  percentile.median = 0.28, percentile95value = 0.3
+)
 print(res_mult_1)
 
 }
