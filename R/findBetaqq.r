@@ -46,7 +46,6 @@ findbetaqq <- function(percentile.value1,
       F2 = qbeta(percentile2, x[1], x[2]) - percentile.value2
     )
   }
-  # library(rootSolve)
 
   ss <- suppressWarnings(multiroot(f = findcentiles, start = c(2, 2), maxiter = 1000))
   finalshape1 <- ss$root[1]
@@ -62,5 +61,5 @@ findbetaqq <- function(percentile.value1,
 
   out <- list(parameters = param, summary = summary(sample_beta), input = input)
   class(out) <- "PriorGen"
-  invisible(return(out))
+  return(out)
 }

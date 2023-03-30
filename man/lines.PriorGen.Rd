@@ -7,7 +7,8 @@
 \method{lines}{PriorGen}(x, ...)
 }
 \arguments{
-\item{x}{An object of type findbeta produces of one of the other PriorGen functions.}
+\item{x}{An object of type findbeta produces of
+one of the other PriorGen functions.}
 
 \item{...}{More basic plot arguments}
 }

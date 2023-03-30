@@ -32,7 +32,7 @@ findbeta_abstract <- function(themean.cat = c("Very low", "Low", "Average", "Hig
                               seed = 280385, nsims = 10000) {
   levels <- c("Very low", "Low", "Average", "High", "Very high")
   themean <- seq(0.1, 0.9, length.out = 5)[which(levels == themean.cat)]
-  alpha <- 0.99995
+  alpha <- 0.999999995
   thevariance.optim <- seq(0.001, 0.5, by = 0.001)
   thevar_max <- thevariance.optim[length(which(themean + qnorm(alpha) * thevariance.optim < 1))]
   thevariance <- seq(0.001, thevar_max, length.out = 5)[which(levels == thevariance.cat)]
@@ -66,5 +66,5 @@ findbeta_abstract <- function(themean.cat = c("Very low", "Low", "Average", "Hig
 
   out <- list(parameters = param, summary = summary(sample_beta), input = input)
   class(out) <- "PriorGen"
-  invisible(return(out))
+  return(out)
 }

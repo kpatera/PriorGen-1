@@ -1,7 +1,7 @@
 ---
-title: "Findbeta extensions ver1"
+title: "Findbeta extensions ver 1"
 author: "Konstantinos Pateras"
-date: "2022-12-09"
+date: "2023-04-05"
 output:
   pdf_document: default
   html_document: default
@@ -11,26 +11,17 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Candidates for  inclusion in priorGen()
-
-## Summary of candidate functions
-* Updated basic findbeta (original function with percentiles)
-    + Mean, Median, Mode
-* Raw findbeta (standard location and scale measures (mean,median,mode,variance,range))
-    + Mean, Median, Mode
-* Abstract findbeta (general statements of how low/high are the mean and variance)
-    + Mean
-* Panel findbeta (Multiple experts or sources of information contribute to define this prior, based on simple averaging)
-    + Mean, Median, Mode
-
 
 \newpage
 ## Updated basic findbeta
 ```{r  include=TRUE}
 source("~/GitHub/PriorGen-1/R/findbeta.r")
-findbeta(themedian = 0.5,lower.v = T,percentile = 0.999,percentile.value = 0.999, silent = F)
-#findbeta(themode = 0.5,lower.v = T,percentile = 0.80,percentile.value = 0.95, silent = T)
-fb_per=findbeta(themean = 0.5,lower.v = T,percentile = 0.90,percentile.value = 0.95, silent = T)
+source("~/GitHub/PriorGen-1/R/findbeta_print.r")
+fb_per0=findbeta(themedian = 0.5,lower.v = T,percentile = 0.999,percentile.value = 0.999)
+fb_per0
+print(fb_per0)
+#findbeta(themode = 0.5,lower.v = T,percentile = 0.80,percentile.value = 0.95)
+fb_per=findbeta(themean = 0.5,lower.v = T,percentile = 0.90,percentile.value = 0.95)
 fb_per$parameters
 fb_per$summary
 fb_per$input
@@ -40,9 +31,9 @@ fb_per$input
 ## Raw findbeta (mean/median/mode/variance/range input)
 ```{r include=TRUE}
 source("~/GitHub/PriorGen-1/R/findbeta_raw.r")
-findbeta_raw(themedian = 0.5,therange = c(0,1), silent = T)
-#findbeta_raw(themode = 0.5,therange = c(0,1), silent = T)
-fb_raw=findbeta_raw(themean = 0.8,thevariance = 0.2,silent = T)
+findbeta_raw(themedian = 0.5,therange = c(0,1))
+#findbeta_raw(themode = 0.5,therange = c(0,1))
+fb_raw=findbeta_raw(themean = 0.8,thevariance = 0.2)
 fb_raw$parameters
 fb_raw$summary
 fb_raw$input
@@ -52,9 +43,9 @@ fb_raw$input
 ## Abstract findbeta (General statements input)
 ```{r  include=TRUE}
 source("~/GitHub/PriorGen-1/R/findbeta_abstract.r")
-findbeta_abstract(themean.cat = "Low",thevariance.cat = "High", silent = T) 
-#findbeta_abstract(themean.cat = "Very low",thevariance.cat = "Low", silent = T) 
-fb_abstract=findbeta_abstract(themean.cat =  "Low",thevariance.cat = "High",silent = T)
+findbeta_abstract(themean.cat = "Low",thevariance.cat = "High") 
+#findbeta_abstract(themean.cat = "Very low",thevariance.cat = "Low") 
+fb_abstract=findbeta_abstract(themean.cat =  "Low",thevariance.cat = "High")
 fb_abstract$parameters
 fb_abstract$summary
 fb_abstract$input
@@ -63,9 +54,9 @@ fb_abstract$input
 ## Panel findbeta (Vector input)
 ```{r  include=TRUE}
 source("~/GitHub/PriorGen-1/R/findbeta_panel.r")
-#findbeta_panel(themedian.vec = c(0.2,0.02,0.5,0.03,0.04,0.05),silent = T) 
-findbeta_panel(themode.vec = c(0.2,0.02,0.5,0.03,0.04,0.05),silent = F) 
-fb_panel=findbeta_panel(themean.vec = c(0.2,0.02,0.5,0.03,0.04,0.05),silent = T) 
+#findbeta_panel(themedian.vec = c(0.2,0.02,0.5,0.03,0.04,0.05)) 
+findbeta_panel(themode.vec = c(0.2,0.02,0.5,0.03,0.04,0.05)) 
+fb_panel=findbeta_panel(themean.vec = c(0.2,0.02,0.5,0.03,0.04,0.05)) 
 fb_panel$parameters
 fb_panel$summary
 fb_panel$input
@@ -74,26 +65,27 @@ fb_panel$input
 \newpage
 ```{r  include=TRUE}
 source("~/GitHub/PriorGen-1/R/findbeta_plot.r")
-fb_pr=findbeta(themean = 0.5,lower.v = T,percentile = 0.999,percentile.value = 0.999,silent = T) 
-findbeta_plot(fb_pr,main="Elicited beta prior (Percentile)",ylab = "Density",lwd=3,type="l")
+fb_pr=findbeta(themean = 0.5,lower.v = T,percentile = 0.999,percentile.value = 0.999) 
+plot(fb_pr,main="Elicited beta prior (Percentile)",ylab = "Density",lwd=3,type="l")
 ```
 \newpage
 ```{r  include=TRUE}
 source("~/GitHub/PriorGen-1/R/findbeta_plot.r")
 fb_raw=findbeta_raw(themean = 0.5,thevariance = 0.5) 
-findbeta_plot(fb_raw,main="Elicited beta prior (Raw)",ylab = "Density",lwd=3,type="l")
+plot(fb_raw,main="Elicited beta prior (Raw)",ylab = "Density",lwd=3,type="l")
 ```
 \newpage
 ```{r  include=TRUE}
 source("~/GitHub/PriorGen-1/R/findbeta_plot.r")
 fb_abstract=findbeta_abstract(themean.cat = "Low",thevariance.cat = "High") 
-findbeta_plot(fb_abstract,main="Elicited beta prior (Abstract)",ylab = "Density",lwd=3,type="l")
+plot(fb_abstract,main="Elicited beta prior (Abstract)",ylab = "Density",lwd=3,type="l")
 ```
 \newpage
 ```{r  include=TRUE}
 source("~/GitHub/PriorGen-1/R/findbeta_plot.r")
-fb_panel1=findbeta_panel(themean.vec = c(0.2,0.02,0.5,0.03,0.04,0.05),silent = T) 
-fb_panel2=findbeta_panel(themean.vec = c(0.2,0.02,0.5,0.4,0.04,0.05),silent =T) 
-findbeta_plot(fb_panel1,main="Elicited beta prior  (Panel)",ylab = "Density",lwd=3,type="l")
-findbeta_plot(fb_panel2,lwd=3,type="l",lines = T)
+source("~/GitHub/PriorGen-1/R/findbeta_lines.r")
+fb_panel1=findbeta_panel(themean.vec = c(0.2,0.02,0.5,0.03,0.04,0.05)) 
+fb_panel2=findbeta_panel(themean.vec = c(0.2,0.02,0.5,0.4,0.04,0.05)) 
+plot(fb_panel1,main="Elicited beta prior  (Panel)",ylab = "Density",lwd=3,lty=1,type="l")
+lines(fb_panel2,lty=2,lwd=3,type="l")
 ```

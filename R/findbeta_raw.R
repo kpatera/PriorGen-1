@@ -48,8 +48,8 @@ findbeta_raw <- function(themean = NULL, themedian = NULL, themode = NULL,
   stopifnot((is.null(themean) + is.null(themedian) + is.null(themode)) == 2)
   stopifnot(((thevariance <= 0.5) + (therange[2] <= 1) + (therange[1] >= 0)) == 3)
 
-  alpha <- 0.99995
-  pr_n <- 0.9999
+  alpha <- 0.9999995
+  pr_n <- 0.999
   out <- NULL
 
   if (!is.null(themean)) {
@@ -130,5 +130,5 @@ findbeta_raw <- function(themean = NULL, themedian = NULL, themode = NULL,
 
   out <- list(parameters = param, summary = summary(sample_beta), input = input)
   class(out) <- "PriorGen"
-  invisible(return(out))
+  return(out)
 }

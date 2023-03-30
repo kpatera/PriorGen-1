@@ -4,9 +4,9 @@
 #' A function that plots any object on top of a class findbeta plot.
 #'
 #' @rdname lines.PriorGen
-#' @param x An object of type findbeta produces of one of the other PriorGen functions.
+#' @param x An object of type findbeta produces of 
+#' one of the other PriorGen functions.
 #' @param ... More basic plot arguments
-#'
 #' @examples
 #' ## Example 1
 #' ## Based on the available literature the mean value

@@ -119,7 +119,6 @@ findbeta <- function(themean = NULL, themedian = NULL, themode = NULL,
 
   out <- list(parameters = param, summary = summary(sample_beta), input = input)
   class(out) <- "PriorGen"
-  invisible(return(out))
+  return(out)
 }
 
-# fb1=findbeta(themedian = 0.5,lower.v = T,percentile = 0.999,percentile.value = 0.999, silent = F)
