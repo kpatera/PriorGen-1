@@ -1,4 +1,4 @@
 library(testthat)
-#library(PriorGen)
+# library(PriorGen)
 
 test_check("PriorGen")

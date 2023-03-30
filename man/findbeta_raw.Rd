@@ -31,17 +31,22 @@ function(themean=NULL,themedian=NULL,themode=NULL, thevariance=NULL, therange=c(
 A function to estimate the parameters alpha and beta of a Beta distribution based on the existing prior beliefs (data and/or expert opinion). Information is provided about the mean (or the median or the mode) and a corresponding scale metric, either the variance or the range of the parameter.
 }
 \examples{
-##Example 1
-##Based on the available literature the mean value for the sensitivity of a test
-##is expected to be 0.90 and its variance equals to 0.1.
+## Example 1
+## Based on the available literature the mean value for the sensitivity of a test
+## is expected to be 0.90 and its variance equals to 0.1.
 
-findbeta_raw(themean=0.90, thevariance=0.1)
+findbeta_raw(themean = 0.90, thevariance = 0.1)
 
-##Example 2
-##Based on the available literature the median value for the specificity of a
-##test is expected to be 0.99 and its range between 0.1 and 1.
+## Example 2
+## Based on the available literature the median value for the specificity of a
+## test is expected to be 0.99 and its range between 0.1 and 1.
 
-findbeta_raw(themedian=0.70, therange=c(0.1,1))
+findbeta_raw(themedian = 0.70, therange = c(0.1, 1))
+
+
+# Mode
+
+findbeta_raw(themode = 0.70, therange = c(0.1, 1))
 
 }
 \references{

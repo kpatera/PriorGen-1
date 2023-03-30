@@ -5,7 +5,7 @@
 \title{The findbeta (abstract) function}
 \usage{
 function(themean.cat=c("Very low","Low","Average","High","Very high"),
-thevariance.cat=c("Very low","Low","Average","High","Very high"), 
+thevariance.cat=c("Very low","Low","Average","High","Very high"),
 silent=TRUE, seed=280385, nsims=10000)
 }
 \arguments{
@@ -28,12 +28,11 @@ A function to estimate the parameters alpha and beta of a Beta distribution base
 General information is provided about the mean in terms of c("Very low","Low","Average","High","Very high"). The same holds for the variance parameter.
 }
 \examples{
-##Example 1
-##Based on the available literature the mean value for the sensitivity of a test
-##is expected to be generally low and its variance not that low but not that much neither.
+## Example 1
+## Based on the available literature the mean value for the sensitivity of a test
+## is expected to be generally low and its variance not that low but not that much neither.
 
-findbeta_abstract(themean.cat="Low", thevariance.cat="Average")
-
+findbeta_abstract(themean.cat = "Low", thevariance.cat = "Average")
 
 }
 \references{

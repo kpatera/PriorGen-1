@@ -25,7 +25,7 @@ To run elicitation analysis on an example dataset:
     out<-findbeta(themode=0.15, percentile=0.90,lower.v=TRUE, percentile.value=0.40, silent=TRUE)
     out
 
-To create a plot of the analysed data:
+To create a plot of the analyzed data:
 
     findbeta_plot(out)
 
@@ -44,7 +44,7 @@ In case an error during download occur try the following
 
 # Updates from Version 1 -\> Version 2.0 Beta
 
-## Summary of updated and candidated functions
+## Summary of updated and candidate functions
 
 -   Updated basic findbeta (original function with percentiles)
     -   Mean, Median, Mode
@@ -74,5 +74,7 @@ In case an error during download occur try the following
 -   Plot all the above samples function
     -   Generic and applicable to all functions above.
 -   New root and optim functions
-    -   RootSolve alterantive
-    -   Optim alternative @KP
+    -   RootSolve alternative
+    -   Optim alternative 
+
+@KP

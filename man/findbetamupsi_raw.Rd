@@ -25,22 +25,23 @@ findbetamupsi_raw(themean, thevariance,  psi.percentile=0.90, percentile.median,
 
 \item{param_gamma:}{The gamma distribution parameters gamma(a,b)}
 
-\item{param_upper:}{simulated mu and psi of Beta(mu psi,psi(1-mu))}
-
 \item{summary:}{A basic summary of the elicited prior}
 
 \item{input:}{The initial input value that produced the above prior.}
+
+\item{param_upper:}{simulated mu and psi of Beta(mu psi,psi(1-mu))}
 }
 \description{
-A function to estimate (a) the parameters of a Beta distribution for the expected mean of a proportion - usually the prevalence of disease/infection for the units in an area/region and (b) the parameters of a Gamma distribution expressing our prior beleif about the variability of the prevalence estimates across the units of the area/region under consideration.
+A function to estimate (a) the parameters of a Beta distribution for the expected mean of a proportion - usually the prevalence of disease/infection for the units in an area/region and (b) the parameters of a Gamma distribution expressing our prior belief about the variability of the prevalence estimates across the units of the area/region under consideration.
 }
 \examples{
 ## Example
 ## The mean prevalence of a disease/infection for the units within an area/region
-## is thought to be 0.20 with a variance equal to 0.03, with large heterogeneity 
+## is thought to be 0.20 with a variance equal to 0.03, with large heterogeneity
 ## i.e. psi equals to 0.15.
 
-findbetamupsi_raw(themean=0.20, thevariance = 0.03, thepsi=0.15)
+findbetamupsi_raw(themean = 0.20, thevariance = 0.03, thepsi = 0.15)
+findbetamupsi_raw(themean = 0.20, thevariance = 0.03, thepsi = 0.15, root.method = "nleqslv")
 
 }
 \references{

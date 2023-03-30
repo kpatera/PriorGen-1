@@ -9,11 +9,11 @@ findbeta(themean=NULL, themedian=NULL, themode=NULL, percentile=0.95,lower.v=F, 
 \arguments{
 \item{percentile.value1:}{specify the value for the first percentile. It takes a value between 0 and 1.}
 
-\item{percentile1:}{specify which is the percentile that corrersponds to percentile.value1. It takes a value between 0 and 1.}
+\item{percentile1:}{specify which is the percentile that corresponds to percentile.value1. It takes a value between 0 and 1.}
 
 \item{percentile.value2:}{specify the value for the second percentile. It takes a value between 0 and 1.}
 
-\item{percentile2:}{specify which is the percentile that corrersponds to percentile.value2. It takes a value between 0 and 1.}
+\item{percentile2:}{specify which is the percentile that corresponds to percentile.value2. It takes a value between 0 and 1.}
 
 \item{parameters:}{The beta distribution parameters Beta(a,b)}
 
@@ -29,7 +29,7 @@ A function to estimate the parameters alpha and beta of a Beta distribution base
 ## disease/infection less than or equal to 0.30 while at the same time we are 90\%
 ## certain that the prevalence is less than 0.60
 
-findbetaqq(percentile.value1=0.30,percentile1=0.20,percentile.value2=0.60,percentile2=0.90)
+findbetaqq(percentile.value1 = 0.30, percentile1 = 0.20, percentile.value2 = 0.60, percentile2 = 0.90)
 
 }
 \references{

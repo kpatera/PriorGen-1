@@ -7,11 +7,11 @@
 findbetamupsi(themean, percentile=0.95, lower.v=T, percentile.value,  psi.percentile=0.90, percentile.median, percentile95value)
 }
 \arguments{
-\item{themean:}{specify your prior beleif about the mean. It takes a value between 0 and 1.}
+\item{themean:}{specify your prior belief about the mean. It takes a value between 0 and 1.}
 
 \item{percentile:}{specify the level of confidence that the true value of the mean is greater or lower than the percentile.value. It takes a value between 0 and 1 and the default is 0.95.}
 
-\item{lower.v:}{logical, if TRUE the specified percentile.value is the upper limit for the mean at the specified confidence level (percentile). If FALSE the specified percentile.value is the lower limit for the mean at the specified confedence level (percentile).The default is TRUE.}
+\item{lower.v:}{logical, if TRUE the specified percentile.value is the upper limit for the mean at the specified confidence level (percentile). If FALSE the specified percentile.value is the lower limit for the mean at the specified confidence level (percentile).The default is TRUE.}
 
 \item{percentile.value:}{specify the upper or lower limit for the mean at the specified level of confidence (percentile). It takes a value between 0 and 1.}
 
@@ -31,14 +31,14 @@ findbetamupsi(themean, percentile=0.95, lower.v=T, percentile.value,  psi.percen
 
 \item{param_gamma:}{The gamma distribution parameters gamma(a,b)}
 
-\item{param_upper:}{simulated mu and psi of Beta(mu psi,psi(1-mu))}
-
 \item{summary:}{A basic summary of the elicited prior}
 
 \item{input:}{The initial input value that produced the above prior.}
+
+\item{param_upper:}{simulated mu and psi of Beta(mu psi,psi(1-mu))}
 }
 \description{
-A function to estimate (a) the parameters of a Beta distribution for the expected mean of a proportion - usually the prevalence of disease/infection for the units in an area/region and (b) the parameters of a Gamma distribution expressing our prior beleif about the variability of the prevalence estimates across the units of the area/region under consideration.
+A function to estimate (a) the parameters of a Beta distribution for the expected mean of a proportion - usually the prevalence of disease/infection for the units in an area/region and (b) the parameters of a Gamma distribution expressing our prior belief about the variability of the prevalence estimates across the units of the area/region under consideration.
 }
 \examples{
 ## Example
@@ -47,7 +47,10 @@ A function to estimate (a) the parameters of a Beta distribution for the expecte
 ## Within this area, we are also confident that 90\% of all units have a prevalence
 ## less or equal to 0.50 and we are 95\% certain that it does not exceed 0.60
 
-findbetamupsi(themean=0.20, percentile=0.99, lower.v=TRUE, percentile.value=0.30, psi.percentile=0.90, percentile.median=0.50, percentile95value=0.60)
+res1 <- findbetamupsi(themean = 0.20, percentile = 0.99, lower.v = TRUE, percentile.value = 0.30, psi.percentile = 0.90, percentile.median = 0.50, percentile95value = 0.60)
+res2 <- findbetamupsi(themean = 0.20, percentile = 0.99, lower.v = TRUE, percentile.value = 0.30, psi.percentile = 0.90, percentile.median = 0.50, percentile95value = 0.60, root.method = "nleqslv")
+res1
+res2
 
 }
 \references{

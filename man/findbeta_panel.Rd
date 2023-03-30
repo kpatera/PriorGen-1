@@ -27,12 +27,22 @@ function(themean.vec=NULL, themedian.vec=NULL, themode.vec=NULL, silent=TRUE, se
 A function to estimate the parameters alpha and beta of a Beta distribution based on the existing prior beliefs (data and/or expert opinion). Information is provided about the mean (or the median or the mode) and a corresponding scale metric, either the variance or the range of the parameter.
 }
 \examples{
-##Example 1
-##Based on the available literature the median value for the specificity of a
-##test is expected to be equal to 0.1, 0.2, 0.4, 0.04, 0.01, 0.5 based on opinions of 6 experts.
+## Example 1
+## Based on the available literature the median/mean/mode value for the specificity of a
+## test is expected to be equal to 0.1, 0.2, 0.4, 0.04, 0.01, 0.5 based on opinions of 6 experts.
 
-findbeta_panel(themean.vec=c(0.1,0.2,0.4,0.04,0.01,0.5))
+resmed <- findbeta_panel(themedian.vec = c(0.1, 0.2, 0.4, 0.04, 0.01, 0.5))
+resmed
 
+resmea <- findbeta_panel(themean.vec = c(0.1, 0.2, 0.4, 0.04, 0.01, 0.5))
+resmea
+
+resmod <- findbeta_panel(themode.vec = c(0.1, 0.2, 0.4, 0.04, 0.01, 0.5))
+resmod
+
+plot(resmed, lty = 1)
+lines(resmea, lty = 2)
+lines(resmod, lty = 3)
 }
 \references{
 Branscum, A. J., Gardner, I. A., & Johnson, W. O. (2005): Estimation of diagnostic test sensitivity and specificity through Bayesian modeling. Preventive veterinary medicine, \bold{68}, 145--163.

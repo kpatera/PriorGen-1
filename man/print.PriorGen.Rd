@@ -2,26 +2,26 @@
 % Please edit documentation in R/findbeta_print.R
 \name{print.PriorGen}
 \alias{print.PriorGen}
-\title{#' The findbeta plot function}
+\title{The findbeta plot function}
 \usage{
-print(findbeta.object)
+print(x,...)
 }
 \arguments{
-\item{findbeta.object:}{An object of type findbeta produced of one of the main PriorGen functions.}
+\item{x:}{An object of type findbeta produced of one of the main PriorGen functions.}
 }
 \description{
 A function that prints a summary any object of the class findbeta.
 }
 \examples{
-##Example 1
-##Based on the available literature the mean value for the sensitivity of a test
-##is expected to be generally low and its variance not that low but not that much neither.
-res_abs_1<-findbeta_abstract(themean.cat="Low", thevariance.cat="Average")
+## Example 1
+## Based on the available literature the mean value for the sensitivity of a test
+## is expected to be generally low and its variance not that low but not that much neither.
+res_abs_1 <- findbeta_abstract(themean.cat = "Low", thevariance.cat = "Average")
 print(res_abs_1)
 
-Example 2 
-Hierarchical prior
-res_mult_1=findbetamupsi(themean=0.10, percentile=0.79, lower.v=TRUE, percentile.value=0.26, psi.percentile=0.95, percentile.median=0.28, percentile95value=0.3)
+## Example 2
+## Hierarchical prior
+res_mult_1 <- findbetamupsi(themean = 0.10, percentile = 0.79, lower.v = TRUE, percentile.value = 0.26, psi.percentile = 0.95, percentile.median = 0.28, percentile95value = 0.3)
 print(res_mult_1)
 
 }

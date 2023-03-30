@@ -7,11 +7,11 @@
 findbeta(themean=NULL, themedian=NULL, themode=NULL, percentile=0.95,lower.v=F, percentile.value, silent=TRUE, seed=280385, nsims=10000)
 }
 \arguments{
-\item{themean:}{specify your prior beleif about the mean. It takes a value between 0 and 1. Not to be specified if a value has been given for the median or the mode.}
+\item{themean:}{specify your prior belief about the mean. It takes a value between 0 and 1. Not to be specified if a value has been given for the median or the mode.}
 
-\item{themedian:}{specify your prior beleif about the median. It takes a value between 0 and 1. Not to be specified if a value has been given for the mean or the mode.}
+\item{themedian:}{specify your prior belief about the median. It takes a value between 0 and 1. Not to be specified if a value has been given for the mean or the mode.}
 
-\item{themode:}{specify your prior beleif about the mode. It takes a value between 0 and 1. Not to be specified if a value has been given for the mean or the median.}
+\item{themode:}{specify your prior belief about the mode. It takes a value between 0 and 1. Not to be specified if a value has been given for the mean or the median.}
 
 \item{percentile:}{specify the level of confidence that the true value of the mean (or the median or the mode) is greater or lower than the percentile.value. It takes a value between 0 and 1 and the default =0.95.}
 
@@ -33,17 +33,17 @@ findbeta(themean=NULL, themedian=NULL, themode=NULL, percentile=0.95,lower.v=F, 
 A function to estimate the parameters alpha and beta of a Beta distribution based on the existing prior beliefs (data and/or expert opinion). Information is provided about the mean (or the median or the mode) and whether it is lower or greater that a certain value with a pre-specified certainty (usually set at 95\\%)
 }
 \examples{
-##Example 1
-##Based on the available literature the mean value for the sensitivity of a test
-##is expected to be 0.90 and we can be 95\\% sure that it is higher than 0.80.
+## Example 1
+## Based on the available literature the mean value for the sensitivity of a test
+## is expected to be 0.90 and we can be 95\\% sure that it is higher than 0.80.
 
-findbeta(themean=0.90, percentile=0.95,lower.v=FALSE, percentile.value=0.80, seed=280385, nsims=10000)
+findbeta(themean = 0.90, percentile = 0.95, lower.v = FALSE, percentile.value = 0.80, seed = 280385, nsims = 10000)
 
-##Example 2
-##Based on the available literature the median value for the specificity of a
-##test is expected to be 0.99 and we can be 95\\% sure that it is higher than 0.90.
+## Example 2
+## Based on the available literature the median value for the specificity of a
+## test is expected to be 0.99 and we can be 95\\% sure that it is higher than 0.90.
 
-findbeta(themedian=0.99, percentile=0.95,lower.v=FALSE, percentile.value=0.90)
+findbeta(themedian = 0.99, percentile = 0.95, lower.v = FALSE, percentile.value = 0.90)
 ##Example 3
 ##The most probable value (mode) for the prevalence of a disease/infection in a
 ##population is expected to be 0.15 and we are 90\\% sure that it is less than 0.40.

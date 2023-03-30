@@ -25,14 +25,14 @@ findbetamupsi_panel(themean.vec, psi.percentile=0.90, percentile.median, percent
 
 \item{param_gamma:}{The gamma distribution parameters gamma(a,b)}
 
-\item{param_upper:}{simulated mu and psi of Beta(mu psi,psi(1-mu))}
-
 \item{summary:}{A basic summary of the elicited prior}
 
 \item{input:}{The initial input value that produced the above prior.}
+
+\item{param_upper:}{simulated mu and psi of Beta(mu psi,psi(1-mu))}
 }
 \description{
-A function to estimate (a) the parameters of a Beta distribution for the expected mean of a proportion - usually the prevalence of disease/infection for the units in an area/region and (b) the parameters of a Gamma distribution expressing our prior beleif about the variability of the prevalence estimates across the units of the area/region under consideration.
+A function to estimate (a) the parameters of a Beta distribution for the expected mean of a proportion - usually the prevalence of disease/infection for the units in an area/region and (b) the parameters of a Gamma distribution expressing our prior belief about the variability of the prevalence estimates across the units of the area/region under consideration.
 }
 \examples{
 ## Example
@@ -41,7 +41,8 @@ A function to estimate (a) the parameters of a Beta distribution for the expecte
 ## we are also confident that 90\% of all units have a prevalence
 ## less or equal to 0.60 and we are 95\% certain that it does not exceed 0.70
 
-findbetamupsi_panel(themean.vec=c(0.4,0.2,0.1,0.3,0.4,0.5,0.1,0.02,0.04,0.05), psi.percentile=0.90, percentile.median=0.60, percentile95value=0.70)
+findbetamupsi_panel(themean.vec = c(0.4, 0.2, 0.1, 0.3, 0.4, 0.5, 0.1, 0.02, 0.04, 0.05), psi.percentile = 0.90, percentile.median = 0.60, percentile95value = 0.70)
+findbetamupsi_panel(themean.vec = c(0.4, 0.2, 0.1, 0.3, 0.4, 0.5, 0.1, 0.02, 0.04, 0.05), psi.percentile = 0.90, percentile.median = 0.60, percentile95value = 0.70, root.method = "nleqslv")
 
 }
 \references{
