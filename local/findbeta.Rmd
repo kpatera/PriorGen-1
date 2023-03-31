@@ -15,13 +15,13 @@ knitr::opts_chunk$set(echo = TRUE)
 \newpage
 ## Updated basic findbeta
 ```{r  include=TRUE}
-source("~/GitHub/PriorGen-1/R/findbeta.r")
-source("~/GitHub/PriorGen-1/R/findbeta_print.r")
+library(PriorGen)
 fb_per0=findbeta(themedian = 0.5,lower.v = T,percentile = 0.999,percentile.value = 0.999)
 fb_per0
 print(fb_per0)
 #findbeta(themode = 0.5,lower.v = T,percentile = 0.80,percentile.value = 0.95)
 fb_per=findbeta(themean = 0.5,lower.v = T,percentile = 0.90,percentile.value = 0.95)
+fb_per
 fb_per$parameters
 fb_per$summary
 fb_per$input

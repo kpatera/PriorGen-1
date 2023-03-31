@@ -118,7 +118,8 @@ findbeta <- function(themean = NULL, themedian = NULL, themode = NULL,
   names(input)[1] <- name
 
   out <- list(parameters = param, summary = summary(sample_beta), input = input)
-  class(out) <- "PriorGen"
+  out
+  class(out) <- c("PriorGen")
   return(out)
 }
 

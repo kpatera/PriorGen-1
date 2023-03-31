@@ -1,11 +1,11 @@
 #' The findbeta plot function
 #'
+#' A function that prints a summary any object of the class PriorGen
 #'
-#' A function that prints a summary any object of the class findbeta.
+#' @usage print.PriorGen(x)
 #'
 #' @rdname print.PriorGen
 #' @param x An object of type findbeta produced of one of the main PriorGen functions.
-#' @param ... Empty
 #' @examples
 #' ## Example 1
 #' ## Based on the available literature the mean value for the sensitivity of a test
