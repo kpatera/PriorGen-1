@@ -115,7 +115,6 @@ findbetamupsi_abstract <- function(themean.cat = c("Very low", "Low", "Average",
   )
 
   out <- list(param_beta = param, param_gamma = ss2$root, summary = summary(sample_beta), input = input, param_upper = list(at = a * b, bt = a * (1 - b)))
-  print(out)
   class(out) <- "PriorGen"
   return(out)
 }

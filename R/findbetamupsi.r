@@ -117,7 +117,6 @@ findbetamupsi <- function(themean, percentile = 0.95, lower.v = T, percentile.va
   )
 
   out <- list(param_beta = param, param_gamma = ss2$root, summary = summary(sample_beta), input = input, param_upper = list(at = a * b, bt = a * (1 - b)))
-  print(out)
   class(out) <- "PriorGen"
   return(out)
 }

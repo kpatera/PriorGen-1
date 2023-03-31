@@ -151,7 +151,6 @@ findbeta_panel <- function(themean.vec = NULL, themedian.vec = NULL, themode.vec
   names(input)[1] <- name
 
   out <- list(parameters = param, summary = summary(sample_beta), input = input)
-  print(out)
   class(out) <- "PriorGen"
   return(out)
 }
