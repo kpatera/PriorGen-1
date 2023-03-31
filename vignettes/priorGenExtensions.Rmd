@@ -20,6 +20,7 @@ fb_per=findbeta(themean = 0.5,lower.v = T,percentile = 0.90,percentile.value = 0
 fb_per$parameters
 fb_per$summary
 fb_per$input
+print_PriorGen(fb_per)
 ```
 \newpage
 ## Raw findbeta (mean/median/mode/variance/range input)

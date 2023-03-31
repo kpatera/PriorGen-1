@@ -30,18 +30,18 @@ print_PriorGen <- function(x) {
     stop("Provide an object of class PriorGen" & class(findbeta.object) != "PriorGen2")
   }
   if (length(findbeta.object) == 3) {
-    paste(
+    paste0(
       "The desired Beta distribution that satisfies the specified conditions is: Beta(",
-      round(findbeta.object$parameters[1], 2), ",", round(findbeta.object$parameters[2], 2), ") \n",
-      "Verification: The percentile value",
+      round(findbeta.object$parameters[1], 2), ",", round(findbeta.object$parameters[2], 2), ").",
+      " Verification: The percentile value ",
       round(qbeta(findbeta.object$input[2], findbeta.object$parameters[1], findbeta.object$parameters[2]), 2),
-      "corresponds to the", findbeta.object$input[2], "th percentile \n"
+      " corresponds to the ", findbeta.object$input[2]*100, "th percentile"
     )
 
     # cat(paste("Descriptive statistics for this distribution can be found below:\n",findbeta.object$summary))
   } else {
     outgam <- as.vector(as.numeric(findbeta.object$param_gamma))
-    paste(
+    paste0(
       "The desired Beta distribution that satisfies the specified conditions about the mean of the prevalence 'mu' is: Beta(",
       round(findbeta.object$param_beta[1], 2), round(findbeta.object$param_beta[2], 2),
       ") and The desired Gamma distribution that satisfies the specified conditions about the variability 'psi' of the prevalence is: Gamma(",
