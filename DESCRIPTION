@@ -30,7 +30,8 @@ Depends:
 Suggests: 
     spelling,
     testthat (>= 3.0.0),
-    knitr
+    knitr,
+    rmarkdown
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 Language: en-US

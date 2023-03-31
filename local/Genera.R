@@ -8,6 +8,9 @@ library(PriorGen)
 #install.packages("lintr")
 #install.packages("covr")
 require(covr)
+require(spelling)
+require(styler)
+require(lintr)
 
 sessioninfo::session_info(include_base = TRUE)
 
@@ -20,7 +23,7 @@ package_coverage(path = path,type = c("examples", "vignettes"), commentDonttest 
 pkgdown::build_site(pkg = path)
 # Check readme file rmarkdown #####
 usethis::use_readme_rmd() # New readme file
-rmarkdown::render("C:/Users/kosta/Documents/GitHub/PriorGen-1/README.md", output_format = rmarkdown::github_document())
+#rmarkdown::render("C:/Users/kosta/Documents/GitHub/PriorGen-1/README.md", output_format = rmarkdown::github_document())
 
 # Examples running ####
 devtools::run_examples(run_dontrun = TRUE, run_donttest = TRUE)
@@ -55,8 +58,8 @@ library(testthat)
 library(PriorGen)
 
 test_check("PriorGen")
-
-
+# Build vignette #####
+devtools::build_vignettes()
 # Check commands ####
 out<-findbeta(themode=0.15, percentile=0.90,lower.v=TRUE, percentile.value=0.40)
 out2<-findbeta(themode=0.20, percentile=0.90,lower.v=TRUE, percentile.value=0.40)

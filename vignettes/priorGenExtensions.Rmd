@@ -1,0 +1,236 @@
+---
+title: "PriorGen old/new features ver 1"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{PriorGen old/new features ver 1}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+\newpage
+## Basic findbeta updated
+```{r  include=TRUE}
+library(PriorGen)
+findbeta(themedian = 0.5,lower.v = T,percentile = 0.999,percentile.value = 0.999)
+#findbeta(themode = 0.5,lower.v = T,percentile = 0.80,percentile.value = 0.95)
+fb_per=findbeta(themean = 0.5,lower.v = T,percentile = 0.90,percentile.value = 0.95)
+fb_per$parameters
+fb_per$summary
+fb_per$input
+```
+\newpage
+## Raw findbeta (mean/median/mode/variance/range input)
+```{r include=TRUE}
+library(PriorGen)
+findbeta_raw(themedian = 0.5,therange = c(0,1))
+#findbeta_raw(themode = 0.5,therange = c(0,1))
+fb_raw=findbeta_raw(themean = 0.8,thevariance = 0.2)
+fb_raw$parameters
+fb_raw$summary
+fb_raw$input
+```
+\newpage
+## Abstract findbeta (General statements input)
+```{r  include=TRUE}
+library(PriorGen)
+findbeta_abstract(themean.cat = "Low",thevariance.cat = "High") 
+#findbeta_abstract(themean.cat = "Very low",thevariance.cat = "Low") 
+fb_abstract=findbeta_abstract(themean.cat =  "Low",thevariance.cat = "High")
+fb_abstract$parameters
+fb_abstract$summary
+fb_abstract$input
+```
+\newpage
+## Panel findbeta (Vector input)
+```{r  include=TRUE}
+library(PriorGen)
+#findbeta_panel(themedian.vec = c(0.2,0.02,0.5,0.03,0.04,0.05)) 
+findbeta_panel(themode.vec = c(0.2,0.02,0.5,0.03,0.04,0.05)) 
+fb_panel=findbeta_panel(themean.vec = c(0.2,0.02,0.5,0.03,0.04,0.05)) 
+fb_panel$parameters
+fb_panel$summary
+fb_panel$input
+```
+\newpage
+## Basic findbetaqq updated (Percentiles input)
+```{r  include=TRUE}
+library(PriorGen)
+fb_qq=findbetaqq(percentile.value1 = 0.3,percentile1 = 0.20,
+                 percentile.value2 = 0.7,percentile2 = 0.97) 
+fb_qq$parameters
+fb_qq$summary
+fb_qq$input
+```
+\newpage
+## Basic findbetamupsi updated (Hierarchical input  + choice of root function)
+```{r  include=TRUE}
+library(PriorGen)
+fb_mupsi_RS=findbetamupsi(themean=0.20, percentile=0.99, lower.v=TRUE,
+              percentile.value=0.30, psi.percentile=0.90,
+              percentile.median=0.60, percentile95value=0.80,root.method="multiroot")
+fb_mupsi_RS$parameters
+fb_mupsi_RS$summary
+fb_mupsi_RS$input
+
+fb_mupsi_NL=findbetamupsi(themean=0.20, percentile=0.99, lower.v=TRUE,
+              percentile.value=0.30, psi.percentile=0.90,
+              percentile.median=0.60, percentile95value=0.80,root.method="nleqslv")
+fb_mupsi_RS$parameters
+fb_mupsi_NL$parameters
+# Results are similar
+
+```
+\newpage
+## Raw findbetamupsi updated (Hierarchical input)
+```{r  include=TRUE}
+library(PriorGen)
+fb_mupsi_raw=findbetamupsi_raw(themean=0.20,thevariance = 0.05, thepsi=0.15)
+fb_mupsi_raw$parameters
+fb_mupsi_raw$summary
+fb_mupsi_raw$input
+```
+\newpage
+## Abstract findbetamupsi updated (Hierarchical input)
+```{r  include=TRUE}
+library(PriorGen)
+fb_mupsi_abstract=findbetamupsi_abstract(themean="Average",thevariance = "Very high", 
+                                         psi.percentile=0.90,percentile.median=0.999,
+                                         percentile95value=0.9999)
+fb_mupsi_abstract$parameters
+fb_mupsi_abstract$summary
+fb_mupsi_abstract$input
+```
+\newpage
+## Panel findbetamupsi updated (Hierarchical input)
+```{r  include=TRUE}
+library(PriorGen)
+fb_mupsi_panel=findbetamupsi_panel(themean=c(0.1,0.5,0.6,0.3,0.05,0.01,0.3), 
+                                   psi.percentile=0.90, percentile.median=0.50,
+                                   percentile95value=0.60)
+fb_mupsi_panel$parameters
+fb_mupsi_panel$summary
+fb_mupsi_panel$input
+
+```
+\newpage 
+# Plot for findbeta
+```{r  fig.align='center', out.width = "500px", dpi=300, include=TRUE}
+library(PriorGen)
+fb_pr=findbeta(themean = 0.5,lower.v = T,percentile = 0.999,percentile.value = 0.999) 
+plot(fb_pr,main="Elicited beta prior \n(Percentile)",ylab = "Density",lwd=3,type="l",xlab="")
+```
+\newpage
+# Plot for finbeta_raw
+```{r  fig.align='center', out.width = "500px", dpi=300, include=TRUE}
+library(PriorGen)
+fb_raw=findbeta_raw(themean = 0.5,thevariance = 0.5) 
+plot(fb_raw,main="Elicited beta prior \n(Raw)",ylab = "Density",lwd=3,type="l",xlab="")
+```
+\newpage
+# Plot for findbeta_abstract
+```{r  fig.align='center', out.width = "500px", dpi=300, include=TRUE}
+library(PriorGen)
+fb_abstract=findbeta_abstract(themean.cat = "Low",thevariance.cat = "High") 
+plot(fb_abstract,main="Elicited beta prior \n(Abstract)",ylab = "Density",lwd=3,type="l",xlab="")
+```
+\newpage
+
+# Plot for findbeta_panel
+```{r  fig.align='center', out.width = "500px", dpi=300, include=TRUE}
+library(PriorGen)
+fb_panel1=findbeta_panel(themean.vec = c(0.2,0.02,0.5,0.03,0.04,0.05)) 
+fb_panel2=findbeta_panel(themean.vec = c(0.2,0.02,0.5,0.4,0.04,0.05)) 
+plot(fb_panel1,main="Elicited beta prior  \n(Panel)",ylab = "Density",lwd=3,type="l",xlab="")
+lines(fb_panel2,lwd=3,type="l",lty=2)
+legend("topright",c("Panel 1", "Panel 2"),lty = c(1,2),lwd=3)
+```
+\newpage
+
+# Plot for findbetaqq
+```{r  fig.align='center', out.width = "500px", dpi=300, include=TRUE}
+library(PriorGen)
+
+fb_qq=findbetaqq(percentile.value1 = 0.3,percentile1 = 0.20,
+percentile.value2 = 0.7,percentile2 = 0.97) 
+
+plot(fb_qq,main="Elicited beta prior \n(Percentiles method)",ylab = "Density",lwd=3,type="l",xlab="")
+```
+\newpage
+
+# Plots for finbetamupsi
+```{r  fig.align='center', out.width = "500px", dpi=300, include=TRUE}
+library(PriorGen)
+fb_mupsi=findbetamupsi(themean=0.20, percentile=0.99, lower.v=TRUE,
+              percentile.value=0.30, psi.percentile=0.90,
+              percentile.median=0.50, percentile95value=0.60)
+#par(mfrow=c(1,3))
+#plot(density(fb_mupsi$param_upper$at),lwd=3,main="Density plot for samples of a=mu*psi") # 
+#plot(density(fb_mupsi$param_upper$bt),lwd=3,main="Density plot for samples of b=mu*(1-psi)") # 
+plot(fb_mupsi,main="Elicited beta prior \n(Hierarchical top level)",
+              ylab = "Density",lwd=3,type="l",xlab="")
+fb_mupsi1=findbetamupsi(themean=0.30, percentile=0.8, lower.v=TRUE,
+              percentile.value=0.30, psi.percentile=0.90,
+              percentile.median=0.70, percentile95value=0.80)
+lines(fb_mupsi1,main="Elicited beta prior \n(Hierarchical top level)",
+              ylab = "Density",lwd=3,type="l",lty=2,col="gray")
+legend("topright",c("Basic","Basic1"),col=c("black","gray"),lty=1:2,lwd=3)
+
+```
+\newpage
+
+# Plots for findbetamupsi_raw
+```{r  fig.align='center', out.width = "500px", dpi=300, include=TRUE}
+library(PriorGen)
+fb_mupsi_raw=findbetamupsi_raw(themean=0.20, thevariance = 0.1, thepsi=0.15)
+#par(mfrow=c(1,3))
+#plot(density(fb_mupsi_abstract$param_upper$at),lwd=3,main="Density plot for samples of a=mu*psi") # 
+#plot(density(fb_mupsi_abstract$param_upper$bt),lwd=3,main="Density plot for samples of b=mu*(1-psi)") # 
+plot(fb_mupsi_raw,main="Elicited beta prior \n(Hierarchical top level)",
+              ylab = "Density",lwd=3,type="l",xlab="")
+fb_mupsi_raw1=findbetamupsi_raw(themean=0.30, thevariance = 0.15, thepsi=0.15)
+lines(fb_mupsi_raw1,main="Elicited beta prior \n(Hierarchical top level)",
+              ylab = "Density",lwd=3,type="l",lty=2,col="gray")
+legend("topright",c("Raw","Raw1"),col=c("black","gray"),lty=1:2,lwd=3)
+```
+\newpage
+
+# Plots for findbetamupsi_abstract
+```{r  fig.align='center', out.width = "500px", dpi=300, include=TRUE}
+library(PriorGen)
+fb_mupsi_abstract=findbetamupsi_abstract(themean="Low", thevariance = "High", 
+psi.percentile=0.90, percentile.median=0.95, percentile95value=0.98)
+#par(mfrow=c(1,3))
+#plot(density(fb_mupsi_abstract$param_upper$at),lwd=3,main="Density plot for samples of a=mu*psi") # 
+#plot(density(fb_mupsi_abstract$param_upper$bt),lwd=3,main="Density plot for samples of b=mu*(1-psi)") # 
+plot(fb_mupsi_abstract,main="Elicited beta prior \n(Hierarchical top level)",
+              ylab = "Density",lwd=3,type="l",xlab="")
+fb_mupsi_abstract1=findbetamupsi_abstract(themean="Very low", thevariance = "Average",
+                                          psi.percentile=0.90,percentile.median=0.95, 
+                                          percentile95value=0.98)
+lines(fb_mupsi_abstract1,main="Elicited beta prior \n(Hierarchical top level)",
+              ylab = "Density",lwd=3,type="l",lty=2,col="gray")
+legend("topright",c("Abstract","Abstract1"),col=c("black","gray"),lty=1:2,lwd=3)
+
+```
+\newpage
+
+# Plots for findbetamupsi_panel
+```{r  fig.align='center', out.width = "500px", dpi=300, include=TRUE}
+library(PriorGen)
+fb_mupsi_panel=findbetamupsi_panel(themean=c(0.1,0.5,0.05,0.01,0.4,0.2), psi.percentile=0.90,
+                                   percentile.median=0.50, percentile95value=0.60)
+#par(mfrow=c(1,3))
+#plot(density(fb_mupsi_panel$param_upper$at),lwd=3,main="Density plot for samples of a=mu*psi") # 
+#plot(density(fb_mupsi_panel$param_upper$bt),lwd=3,main="Density plot for samples of b=mu*(1-psi)") # 
+plot(fb_mupsi_panel,main="Elicited beta prior \n(Hierarchical top level)",
+              ylab = "Density",lwd=3,type="l",xlab="")
+fb_mupsi_panel1=findbetamupsi_panel(themean=c(0.1,0.5,0.05,0.01,0.6,0.65), psi.percentile=0.90,
+              percentile.median=0.80, percentile95value=0.90)
+lines(fb_mupsi_panel1,main="Elicited beta prior \n(Hierarchical top level)",
+              ylab = "Density",lwd=3,type="l",lty=2,col="gray")
+legend("topright",c("Panel","Panel1"),col=c("black","gray"),lty=1:2,lwd=3)
+
+```

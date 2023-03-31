@@ -60,6 +60,7 @@ findbetaqq <- function(percentile.value1,
   )
 
   out <- list(parameters = param, summary = summary(sample_beta), input = input)
+  print(out)
   class(out) <- "PriorGen"
   return(out)
 }

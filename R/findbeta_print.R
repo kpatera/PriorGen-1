@@ -2,9 +2,9 @@
 #'
 #' A function that prints a summary any object of the class PriorGen
 #'
-#' @usage print.PriorGen(x)
+#' @usage print_PriorGen(x)
 #'
-#' @rdname print.PriorGen
+#' @rdname print_PriorGen
 #' @param x An object of type findbeta produced of one of the main PriorGen functions.
 #' @examples
 #' ## Example 1
@@ -23,7 +23,7 @@
 #' print(res_mult_1)
 #'
 #' @export
-print.PriorGen <- function(x, ...) {
+print_PriorGen <- function(x) {
   findbeta.object <- x
   classchk <- as.character(class(findbeta.object))
   if (classchk != "PriorGen" && classchk != "PriorGen2") {

@@ -100,6 +100,7 @@ findbetamupsi_raw <- function(themean = 0.2, thevariance = 0.05, thepsi = 0.5,
   )
 
   out <- list(param_beta = param, param_gamma = ss2$root, summary = summary(sample_beta), input = input, param_upper = list(at = a * b, bt = a * (1 - b)))
+  print(out)
   class(out) <- "PriorGen"
   return(out)
 }

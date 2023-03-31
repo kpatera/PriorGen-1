@@ -1,10 +1,10 @@
 ---
-title: "Findbeta extensions ver 1"
-author: "Konstantinos Pateras"
-date: "2023-04-05"
-output:
-  pdf_document: default
-  html_document: default
+title: "PriorGen old/new features ver 1"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{PriorGen old/new features ver 1}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
 ---
 
 ```{r setup, include=FALSE}

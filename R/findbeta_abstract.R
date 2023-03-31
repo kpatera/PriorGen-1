@@ -65,6 +65,7 @@ findbeta_abstract <- function(themean.cat = c("Very low", "Low", "Average", "Hig
   names(input)[1] <- name
 
   out <- list(parameters = param, summary = summary(sample_beta), input = input)
+  print(out)
   class(out) <- "PriorGen"
   return(out)
 }

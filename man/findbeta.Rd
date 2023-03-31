@@ -50,9 +50,10 @@ findbeta(
 ## test is expected to be 0.99 and we can be 95\\% sure that it is higher than 0.90.
 
 findbeta(
-  themedian = 0.99, percentile = 0.95, lower.v = FALSE,
-  percentile.value = 0.90
+ themedian = 0.99, percentile = 0.95, lower.v = FALSE,
+ percentile.value = 0.90
 )
+
 ##Example 3
 ##The most probable value (mode) for the prevalence of a disease/infection in a
 ##population is expected to be 0.15 and we are 90\\% sure that it is less than 0.40.

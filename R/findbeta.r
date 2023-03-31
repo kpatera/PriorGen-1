@@ -29,11 +29,11 @@
 #' ## Based on the available literature the median value for the specificity of a
 #' ## test is expected to be 0.99 and we can be 95\% sure that it is higher than 0.90.
 #'
-#' findbeta(
-#'   themedian = 0.99, percentile = 0.95, lower.v = FALSE,
-#'   percentile.value = 0.90
-#' )
-
+#'findbeta(
+#'  themedian = 0.99, percentile = 0.95, lower.v = FALSE,
+#'  percentile.value = 0.90
+#')
+#'
 #' ##Example 3
 #' ##The most probable value (mode) for the prevalence of a disease/infection in a
 #' ##population is expected to be 0.15 and we are 90\% sure that it is less than 0.40.
@@ -118,7 +118,7 @@ findbeta <- function(themean = NULL, themedian = NULL, themode = NULL,
   names(input)[1] <- name
 
   out <- list(parameters = param, summary = summary(sample_beta), input = input)
-  out
+  print(out)
   class(out) <- c("PriorGen")
   return(out)
 }
