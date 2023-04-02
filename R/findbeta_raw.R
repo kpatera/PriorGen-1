@@ -1,7 +1,7 @@
 #' The findbeta (raw) function
 #'
-#' A function to estimate the parameters alpha and beta of a Beta distribution based on the existing prior beliefs (data and/or expert opinion). Information is provided about the mean (or the median or the mode) and a corresponding scale metric, either the variance or the range of the parameter.
-#'
+#' A function to estimate the parameters alpha and beta of a Beta distribution based on the existing prior beliefs (data and/or expert opinion). 
+#' Information should be provided on the raw values of the mean (or the median or the mode) and a corresponding scale metric, either the variance or the range of the parameter.
 #'
 #' @usage findbeta_raw(themean=NULL,themedian=NULL,themode=NULL,
 #'  thevariance=NULL, therange=c(0,1), seed=280385, nsims=10000)

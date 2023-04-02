@@ -1,7 +1,7 @@
 #' The findbetamupsi (raw) function
 #'
 #' A function to estimate (a) the parameters of a Beta distribution for the expected mean of a proportion - usually the prevalence of disease/infection for the units in an area/region and (b) the parameters of a Gamma distribution expressing our prior belief about the variability of the prevalence estimates across the units of the area/region under consideration.
-#'
+#' Information should be provided on the raw values of the mean, the within-study variance and the psi (between-study variance) parameters.
 #'
 #' @usage findbetamupsi_raw(themean = 0.2, thevariance = 0.05, thepsi = 0.5,
 #' seed = 280385, nsims = 10000, root.method = "multiroot")

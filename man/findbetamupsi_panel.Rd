@@ -36,6 +36,7 @@ param_upper: simulated mu and psi of Beta(mu psi,psi(1-mu))
 }
 \description{
 A function to estimate (a) the parameters of a Beta distribution for the expected mean of a proportion - usually the prevalence of disease/infection for the units in an area/region and (b) the parameters of a Gamma distribution expressing our prior belief about the variability of the prevalence estimates across the units of the area/region under consideration.
+Information should be provided about the mean as a vector corresponding to multiple prior mean prevalences from experts or studies.
 }
 \examples{
 ## Example

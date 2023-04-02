@@ -1,6 +1,7 @@
 #' The findbeta function
 #'
-#' A function to estimate the parameters alpha and beta of a Beta distribution based on the existing prior beliefs (data and/or expert opinion). Information is provided about the mean (or the median or the mode) and whether it is lower or greater that a certain value with a pre-specified certainty (usually set at 95\%)
+#' A function to estimate the parameters alpha and beta of a Beta distribution based on the existing prior beliefs (data and/or expert opinion). 
+#' Information should be provided about the mean (or the median or the mode) and whether it is lower or greater that a certain value with a pre-specified certainty (usually set at 95\%)
 #'
 #' @usage findbeta(themean=NULL, themedian=NULL, themode=NULL,
 #'  percentile=0.95,lower.v=F, percentile.value,

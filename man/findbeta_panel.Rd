@@ -26,7 +26,8 @@ summary: A basic summary of the elicited prior
 input: The initial input value that produced the above prior.
 }
 \description{
-A function to estimate the parameters alpha and beta of a Beta distribution based on the existing prior beliefs (data and/or expert opinion). Information is provided about the mean (or the median or the mode) and a corresponding scale metric, either the variance or the range of the parameter.
+A function to estimate the parameters alpha and beta of a Beta distribution based on the existing prior beliefs (data and/or expert opinion).
+Information should be provided about the mean (or the median or the mode) as a vector corresponding to multiple prior mean prevalences from experts or studies.
 }
 \examples{
 ## Example 1
