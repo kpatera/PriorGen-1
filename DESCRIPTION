@@ -15,8 +15,8 @@ Authors@R:
     )
 Description: 
   Translates beliefs into prior information in the form of Beta and Gamma distributions. 
-	It can be mainly used for the generation of priors on the prevalence of disease and 
-	the sensitivity/specificity of diagnostic tests.
+	It can be used for the generation of priors on the prevalence of disease and 
+	the sensitivity/specificity of diagnostic tests and any other binomial experiment.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

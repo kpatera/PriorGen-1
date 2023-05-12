@@ -1,6 +1,6 @@
 #' The findbeta (abstract) function
 #'
-#' A function to estimate the parameters alpha and beta of a Beta distribution based on the existing prior beliefs (data and/or expert opinion).
+#' A function to estimate the parameters alpha and beta (a,b) of a Beta distribution based on the existing prior beliefs (data and/or expert opinion).
 #' General information should be provided on the mean in terms of c("Very low","Low","Average","High","Very high"). The same holds for the variance parameter.
 #'
 #'

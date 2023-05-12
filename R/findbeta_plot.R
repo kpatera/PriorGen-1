@@ -1,7 +1,7 @@
 #' The findbeta plot function
 #'
 #'
-#' A function that plots any object of the class findbeta.
+#' A function that plots any object of the class PriorGen.
 #'
 #' @rdname plot.PriorGen
 #' @param x An object of type findbeta produces of one of 

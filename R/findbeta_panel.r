@@ -1,7 +1,7 @@
 #' The findbeta (panel) function
 #'
 #'
-#' A function to estimate the parameters alpha and beta of a Beta distribution based on the existing prior beliefs (data and/or expert opinion). 
+#' A function to estimate the parameters alpha and beta (a,b) of a Beta distribution based on the existing prior beliefs (data and/or expert opinion). 
 #' Information should be provided about the mean (or the median or the mode) as a vector corresponding to multiple prior mean prevalences from experts or studies.
 #'
 #' @usage findbeta_panel(themean.vec=NULL, themedian.vec=NULL,

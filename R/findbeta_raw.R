@@ -1,6 +1,6 @@
 #' The findbeta (raw) function
 #'
-#' A function to estimate the parameters alpha and beta of a Beta distribution based on the existing prior beliefs (data and/or expert opinion). 
+#' A function to estimate the parameters alpha and beta (a,b) of a Beta distribution based on the existing prior beliefs (data and/or expert opinion). 
 #' Information should be provided on the raw values of the mean (or the median or the mode) and a corresponding scale metric, either the variance or the range of the parameter.
 #'
 #' @usage findbeta_raw(themean=NULL,themedian=NULL,themode=NULL,
@@ -45,8 +45,12 @@ findbeta_raw <- function(themean = NULL, themedian = NULL, themode = NULL,
                          thevariance = NULL, therange = c(0, 1), seed = 280385,
                          nsims = 10000) {
   # Cannot handle Beta(a,b) with a,b<1
-  stopifnot((is.null(themean) + is.null(themedian) + is.null(themode)) == 2)
-  stopifnot(((thevariance <= 0.5) + (therange[2] <= 1) + (therange[1] >= 0)) == 3)
+  
+  if((is.null(themean) + is.null(themedian) + is.null(themode)) == 2) 
+    stop("Error: Input at least one of the following: 1. themean, 2. themedian, 3. themode.")
+  
+  if(((thevariance <= 0.5) + (therange[2] <= 1) + (therange[1] >= 0)) == 3) 
+    stop("Error: Input at least one of the following: 1. thevariance (for themean), 2. therange (for themedian/themode)")
 
   alpha <- 0.9999995
   pr_n <- 0.999

@@ -1,7 +1,7 @@
 #' The findbeta function
 #'
-#' A function to estimate the parameters alpha and beta of a Beta distribution based on the existing prior beliefs (data and/or expert opinion). 
-#' Information should be provided about the mean (or the median or the mode) and whether it is lower or greater that a certain value with a pre-specified certainty (usually set at 95\%)
+#' A function to estimate the parameters alpha and beta (a,b) of a Beta distribution based on the existing prior beliefs (data and/or expert opinion). 
+#' Information should be provided about the mean (or the median or the mode) and whether it is lower or greater that a certain value with a pre-specified certainty (usually set at 95/%)
 #'
 #' @usage findbeta(themean=NULL, themedian=NULL, themode=NULL,
 #'  percentile=0.95,lower.v=F, percentile.value,
@@ -23,7 +23,7 @@
 #'
 #' findbeta(
 #'   themean = 0.90, percentile = 0.95, lower.v = FALSE,
-#'   percentile.value = 0.80, seed = 280385, nsims = 10000
+#'   percentile.value = 0.80
 #' )
 #'
 #' ## Example 2
@@ -71,11 +71,14 @@ findbeta <- function(themean = NULL, themedian = NULL, themode = NULL,
     value <- themode
   }
   if (is.null(themode) && is.null(themedian)) {
-    stopifnot((lower.v == T && themean <= percentile.value) | (lower.v == F && themean >= percentile.value))
+    if((lower.v == T && themean <= percentile.value) | (lower.v == F && themean >= percentile.value)) 
+      stop("Error: Check the value of the percentile.value in relation to the direction (lower.v)!")
   } else if (is.null(themean) && is.null(themode)) {
-    stopifnot((lower.v == T && themedian <= percentile.value) | (lower.v == F && themedian >= percentile.value))
+    if((lower.v == T && themedian <= percentile.value) | (lower.v == F && themedian >= percentile.value)) 
+      stop("Error: Check the value of the percentile.value in relation to the direction (lower.v)!")
   } else {
-    stopifnot((lower.v == T && themode <= percentile.value) | (lower.v == F && themode >= percentile.value))
+    if((lower.v == T && themode <= percentile.value) | (lower.v == F && themode >= percentile.value)) 
+      stop("Error: Check the value of the percentile.value in relation to the direction (lower.v)!")
   }
 
   if (lower.v == T) {
