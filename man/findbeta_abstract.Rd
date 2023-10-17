@@ -8,9 +8,11 @@ findbeta_abstract(themean.cat, thevariance.cat,
 seed=280385, nsims=10000)
 }
 \arguments{
-\item{themean.cat}{specify your prior belief about the mean. It takes a value among c("Very low","Low","Average","High","Very high").}
+\item{themean.cat}{specify your prior belief about the mean. It takes a value among c("Very low",
+"Low","Average","High","Very high").}
 
-\item{thevariance.cat}{specify your prior belief about the variance. It takes a value among c("Very low","Low","Average","High","Very high").}
+\item{thevariance.cat}{specify your prior belief about the variance. It takes a value among
+c("Very low","Low","Average","High","Very high").}
 
 \item{seed}{A fixed seed for replication purposes.}
 
@@ -24,7 +26,7 @@ summary: A basic summary of the elicited prior
 input: The initial input value that produced the above prior.
 }
 \description{
-A function to estimate the parameters alpha and beta of a Beta distribution based on the existing prior beliefs (data and/or expert opinion).
+A function to estimate the parameters alpha and beta (a,b) of a Beta distribution based on the existing prior beliefs (data and/or expert opinion).
 General information should be provided on the mean in terms of c("Very low","Low","Average","High","Very high"). The same holds for the variance parameter.
 }
 \examples{

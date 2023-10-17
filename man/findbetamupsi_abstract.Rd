@@ -9,9 +9,11 @@ psi.percentile=0.90, percentile.median, percentile95value,
 seed = 280385, nsims = 10000, root.method = "multiroot")
 }
 \arguments{
-\item{themean.cat}{specify your prior belief about the mean. It takes a value among c("Very low","Low","Average","High","Very high").}
+\item{themean.cat}{specify your prior belief about the mean. It takes a value among
+c("Very low","Low","Average","High","Very high").}
 
-\item{thevariance.cat}{specify your prior belief about the variance. It takes a value among c("Very low","Low","Average","High","Very high").}
+\item{thevariance.cat}{specify your prior belief about the variance. It takes a value among
+c("Very low","Low","Average","High","Very high").}
 
 \item{psi.percentile}{specify the level of confidence that a certain fraction of the units under study has a prevalence less than the percentile.median. It takes a value between 0 and 1 and the default is 0.90.}
 

@@ -2,16 +2,16 @@
 #'
 #' A function that prints a summary any object of the class PriorGen
 #'
-#' @usage print_PriorGen(x)
+#' @usage print.PriorGen(x)
 #'
-#' @rdname print_PriorGen
+#' @rdname print.PriorGen
 #' @param x An object of type findbeta produced of one of the main PriorGen functions.
 #' @examples
 #' ## Example 1
 #' ## Based on the available literature the mean value for the sensitivity of a test
 #' ## is expected to be generally low and its variance not that low but not that much neither.
 #' res_abs_1 <- findbeta_abstract(themean.cat = "Low", thevariance.cat = "Average")
-#' print_PriorGen(res_abs_1)
+#' print.PriorGen(res_abs_1)
 #'
 #' ## Example 2
 #' ## Hierarchical prior
@@ -20,10 +20,10 @@
 #'   lower.v = TRUE, percentile.value = 0.26, psi.percentile = 0.95,
 #'   percentile.median = 0.28, percentile95value = 0.3
 #' )
-#' print_PriorGen(res_mult_1)
+#' print.PriorGen(res_mult_1)
 #'
 #' @export
-print_PriorGen <- function(x) {
+print.PriorGen <- function(x) {
   findbeta.object <- x
   classchk <- as.character(class(findbeta.object))
   if (classchk != "PriorGen" && classchk != "PriorGen2") {

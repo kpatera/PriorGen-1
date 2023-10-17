@@ -33,8 +33,8 @@ summary: A basic summary of the elicited prior
 input: The initial input value that produced the above prior.
 }
 \description{
-A function to estimate the parameters alpha and beta of a Beta distribution based on the existing prior beliefs (data and/or expert opinion).
-Information should be provided about the mean (or the median or the mode) and whether it is lower or greater that a certain value with a pre-specified certainty (usually set at 95\\%)
+A function to estimate the parameters alpha and beta (a,b) of a Beta distribution based on the existing prior beliefs (data and/or expert opinion).
+Information should be provided about the mean (or the median or the mode) and whether it is lower or greater that a certain value with a pre-specified certainty (usually set at 95/\%)
 }
 \examples{
 ## Example 1
@@ -43,7 +43,7 @@ Information should be provided about the mean (or the median or the mode) and wh
 
 findbeta(
   themean = 0.90, percentile = 0.95, lower.v = FALSE,
-  percentile.value = 0.80, seed = 280385, nsims = 10000
+  percentile.value = 0.80
 )
 
 ## Example 2

@@ -7,8 +7,10 @@
 #' @usage findbeta_abstract(themean.cat, thevariance.cat,
 #' seed=280385, nsims=10000)
 #'
-#' @param themean.cat specify your prior belief about the mean. It takes a value among c("Very low","Low","Average","High","Very high").
-#' @param thevariance.cat specify your prior belief about the variance. It takes a value among c("Very low","Low","Average","High","Very high").
+#' @param themean.cat specify your prior belief about the mean. It takes a value among c("Very low", 
+#' "Low","Average","High","Very high").
+#' @param thevariance.cat specify your prior belief about the variance. It takes a value among 
+#' c("Very low","Low","Average","High","Very high").
 #' @param seed A fixed seed for replication purposes.
 #' @param nsims Number of simulations for the creation of various summary metrics of the elicited prior.
 #'

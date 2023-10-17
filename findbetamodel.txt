@@ -1,0 +1,25 @@
+model{
+
+for(i in 1:k){
+y[i] ~ dbin(ap[i], n[i])
+ap[i] <- sub.p[i]*main.Se + (1-sub.p[i])*(1-main.Sp)
+
+sub.p[i] ~ dbeta(alpha,beta) T(0.001,0.999)
+}
+
+alpha <- main.ap*main.psi
+beta <- main.psi*(1-main.ap)
+main.ap ~ dbeta(aa, bb) T(0.001,0.999)
+main.psi ~ dgamma(0.01, 0.01) T(0.001,0.999)
+
+#informative prior for Se and Sp
+main.Se <- 1
+main.Sp <- 1
+
+#predictions
+y.pre ~ dbin(main.pstar.rep,m)
+
+main.pstar.rep ~ dbeta(alpha,beta)
+pre.pequal0 <- equals(main.pstar.rep,0)
+pre.plessthan0.05 <- step(0.05-main.pstar.rep)
+}

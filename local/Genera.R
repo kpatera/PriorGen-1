@@ -76,6 +76,17 @@ temp=findbetamupsi(themean=0.10, percentile=0.79,
 temp$param_gamma
 temp$param_beta
 
+data.frame()
+x_i1=c(5,	7,	8,	8,	8,	10,	10,	12,	13,	14,	14,	14,15)
+d_i1=c(1,	1,	1,	0,	0,	0,	0,	1,	1,	0,	0,	0,	0)
+
+
+x_i2=c(	3,	4,	5,	6,	7,	8,	10,	11, 12,	14,	15)
+d_i2=c(1,	1,	1,	1,	1,	1,	0,	1,	1,	0,	0)
+AG<-data.frame(x=c(x_i1,x_i2),d=c(d_i1,d_i2),group=c(rep(1,length(x_i1)),rep(2,length(x_i2))))
+
+library(survival)
+plot(survfit(data = AG,formula = Surv(time = AG$x,event = AG$d)~group))
 # N(logit(0.2), 0.3 2)
 # LO c + 𝜃 + 𝜏Z
 

@@ -7,8 +7,10 @@
 #' psi.percentile=0.90, percentile.median, percentile95value,
 #' seed = 280385, nsims = 10000, root.method = "multiroot")
 #'
-#' @param themean.cat specify your prior belief about the mean. It takes a value among c("Very low","Low","Average","High","Very high").
-#' @param thevariance.cat specify your prior belief about the variance. It takes a value among c("Very low","Low","Average","High","Very high").
+#' @param themean.cat specify your prior belief about the mean. It takes a value among 
+#' c("Very low","Low","Average","High","Very high").
+#' @param thevariance.cat specify your prior belief about the variance. It takes a value among 
+#' c("Very low","Low","Average","High","Very high").
 #' @param psi.percentile specify the level of confidence that a certain fraction of the units under study has a prevalence less than the percentile.median. It takes a value between 0 and 1 and the default is 0.90.
 #' @param percentile.median specify the median value that corresponds to the defined psi.percentile. It takes a value between 0 and 1 and has to be higher than both themean and the percentile.
 #' @param percentile95value specify the value that the percentile.median does not exceed with 95% confidence. It takes a value between 0 and 1 and has to be higher than the percentile.median.
