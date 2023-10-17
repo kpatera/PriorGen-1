@@ -9,7 +9,7 @@
 #' ## Based on the available literature the mean value for the sensitivity of a test
 #' ## is expected to be generally low and its variance not that low but not that much neither.
 #' res_abs_1 <- findbeta_abstract(themean.cat = "Low", thevariance.cat = "Average")
-#' print.PriorGen(res_abs_1)
+#' print(res_abs_1)
 #'
 #' ## Example 2
 #' ## Hierarchical prior
@@ -18,7 +18,7 @@
 #'   lower.v = TRUE, percentile.value = 0.26, psi.percentile = 0.95,
 #'   percentile.median = 0.28, percentile95value = 0.3
 #' )
-#' print.PriorGen(res_mult_1)
+#' print(res_mult_1)
 #'
 #' @export
 print.PriorGen <- function(x) {
