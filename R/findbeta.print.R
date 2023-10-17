@@ -2,8 +2,6 @@
 #'
 #' A function that prints a summary any object of the class PriorGen
 #'
-#' @usage print.PriorGen(x)
-#'
 #' @rdname print.PriorGen
 #' @param x An object of type findbeta produced of one of the main PriorGen functions.
 #' @examples

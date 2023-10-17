@@ -4,7 +4,7 @@
 \alias{print.PriorGen}
 \title{The findbeta plot function}
 \usage{
-print.PriorGen(x)
+\method{print}{PriorGen}(x)
 }
 \arguments{
 \item{x}{An object of type findbeta produced of one of the main PriorGen functions.}

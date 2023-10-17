@@ -1,6 +1,5 @@
 #' The findbeta plot function
 #'
-#'
 #' A function that plots any object of the class PriorGen.
 #'
 #' @rdname plot.PriorGen

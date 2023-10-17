@@ -1,6 +1,5 @@
 #' The findbeta lines function
 #'
-#'
 #' A function that plots another PriorGen object on top of a class PriorGen plot.
 #'
 #' @rdname lines.PriorGen
