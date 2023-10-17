@@ -1,5 +1,5 @@
 
-# PriorGen - Ver 1.2 beta
+# PriorGen - Ver 2.1
 
 PriorGen — Generates Prior Distributions for Proportions
 

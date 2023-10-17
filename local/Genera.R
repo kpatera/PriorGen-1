@@ -2,7 +2,7 @@
 require(devtools)
 require(remotes)
 remotes::install_github("kpatera/PriorGen-1",force = T)
-library(PriorGen)
+#library(PriorGen)
 #install.packages("spelling")
 #install.packages("styler")
 #install.packages("lintr")
